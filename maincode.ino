@@ -414,3 +414,66 @@ void Twinkle(byte red, byte green, byte blue, int Count, int SpeedDelay, boolean
   
   delay(SpeedDelay);
 }
+
+// Twinkle Random
+
+void TwinkleRandom(int Count, int SpeedDelay, boolean OnlyOne) {
+  setAll(0,0,0);
+  
+  for (int i=0; i<Count; i++) {
+     setPixel(random(NUM_LEDS),random(0,255),random(0,255),random(0,255));
+     showStrip();
+     delay(SpeedDelay);
+     if(OnlyOne) { 
+       setAll(0,0,0); 
+     }
+   }
+  
+  delay(SpeedDelay);
+}
+
+// Sparkle
+
+void Sparkle(byte red, byte green, byte blue, int SpeedDelay) {
+  int Pixel = random(NUM_LEDS);
+  setPixel(Pixel,red,green,blue);
+  showStrip();
+  delay(SpeedDelay);
+  setPixel(Pixel,0,0,0);
+}
+
+// Snow parkle
+
+void SnowSparkle(byte red, byte green, byte blue, int SparkleDelay, int SpeedDelay) {
+  setAll(red,green,blue);
+  
+  int Pixel = random(NUM_LEDS);
+  setPixel(Pixel,0xff,0xff,0xff);
+  showStrip();
+  delay(SparkleDelay);
+  setPixel(Pixel,red,green,blue);
+  showStrip();
+  delay(SpeedDelay);
+}
+
+// Running light
+void RunningLights(byte red, byte green, byte blue, int WaveDelay) {
+  int Position=0;
+  
+  for(int i=0; i<NUM_LEDS*2; i++)
+  {
+      Position++; // = 0; //Position + Rate;
+      for(int i=0; i<NUM_LEDS; i++) {
+        // sine wave, 3 offset waves make a rainbow!
+        //float level = sin(i+Position) * 127 + 128;
+        //setPixel(i,level,0,0);
+        //float level = sin(i+Position) * 127 + 128;
+        setPixel(i,((sin(i+Position) * 127 + 128)/255)*red,
+                   ((sin(i+Position) * 127 + 128)/255)*green,
+                   ((sin(i+Position) * 127 + 128)/255)*blue);
+      }
+      
+      showStrip();
+      delay(WaveDelay);
+  }
+}
