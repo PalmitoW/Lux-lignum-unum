@@ -1,9 +1,13 @@
 // Baton de GN
 
-// This is a demonstration on how to use an input device to trigger changes on your neo pixels.
-// You should wire a momentary push button to connect from ground to a digital IO pin.  When you
-// press the button it will change to a new pixel animation.  Note that you need to press the
-// button once to start the first animation!
+/*
+*   Création d'un programme pour contrôler les leds
+*   disposées sur un bâton de magicien.
+*
+*
+*
+*/
+/******************** INTRODUCTION ENTREES SORTIES ********************/
 
 #include <Adafruit_NeoPixel.h>
 
@@ -25,14 +29,40 @@
 //   NEO_KHZ800  800 KHz bitstream (e.g. High Density LED strip), correct for neopixel stick
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(PIXEL_COUNT, PIXEL_PIN, NEO_GRB + NEO_KHZ800);
 
+/******************** INTRODUCTION DES VARIABLES ********************/
+
 bool oldState = HIGH;
 int showType = 0;
+
+/*************************** BOUCLE SETUP ***************************/
+
+/** A FAIRE **/
+
 
 void setup() {
   pinMode(BUTTON_PIN_SELECT, INPUT_PULLUP);
   strip.begin();
   strip.show(); // Initialize all pixels to 'off'
 }
+
+/************************ BOUCLE EST BOUCLEE ************************/
+
+/*
+
+* A FAIRE
+
+* Objectifs:
+* l’interrupteur index monte le programme
+* l'interrupteur index + bas descend le pogramme
+* l’interrupteur majeur lance le programme
+* une(ou plusieurs) led au dessus de la main indique sur quel programme on est.
+* l’interrupteur du bas (sol) lance un petit effet toujours le même
+
+* Blocage et déblocage du baton :
+* appuyer sur l’interrupteur du bas (sol) puis sur l’interrupteur de l’index
+
+*/
+
 
 void loop() {
   // Get current button state.
@@ -55,6 +85,8 @@ void loop() {
   // Set the last button state to the old state.
   oldState = newState;
 }
+
+/*************************** SWITCH CASES ***************************/
 
 void startShow(int i) {
   switch(i){
@@ -80,6 +112,9 @@ void startShow(int i) {
             break;
   }
 }
+
+
+/*************************** BOUCLE SHOW ***************************/
 
 // Fill the dots one after the other with a color
 void colorWipe(uint32_t c, uint8_t wait) {
