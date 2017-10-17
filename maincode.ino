@@ -282,3 +282,135 @@ void HalloweenEyes(byte red, byte green, byte blue,
   
   delay(EndPause);
 }
+
+// Cyclone
+
+void CylonBounce(byte red, byte green, byte blue, int EyeSize, int SpeedDelay, int ReturnDelay){
+
+  for(int i = 0; i < NUM_LEDS-EyeSize-2; i++) {
+    setAll(0,0,0);
+    setPixel(i, red/10, green/10, blue/10);
+    for(int j = 1; j <= EyeSize; j++) {
+      setPixel(i+j, red, green, blue); 
+    }
+    setPixel(i+EyeSize+1, red/10, green/10, blue/10);
+    showStrip();
+    delay(SpeedDelay);
+  }
+
+  delay(ReturnDelay);
+
+  for(int i = NUM_LEDS-EyeSize-2; i > 0; i--) {
+    setAll(0,0,0);
+    setPixel(i, red/10, green/10, blue/10);
+    for(int j = 1; j <= EyeSize; j++) {
+      setPixel(i+j, red, green, blue); 
+    }
+    setPixel(i+EyeSize+1, red/10, green/10, blue/10);
+    showStrip();
+    delay(SpeedDelay);
+  }
+  
+  delay(ReturnDelay);
+}
+
+// New KITT
+void NewKITT(byte red, byte green, byte blue, int EyeSize, int SpeedDelay, int ReturnDelay){
+  RightToLeft(red, green, blue, EyeSize, SpeedDelay, ReturnDelay);
+  LeftToRight(red, green, blue, EyeSize, SpeedDelay, ReturnDelay);
+  OutsideToCenter(red, green, blue, EyeSize, SpeedDelay, ReturnDelay);
+  CenterToOutside(red, green, blue, EyeSize, SpeedDelay, ReturnDelay);
+  LeftToRight(red, green, blue, EyeSize, SpeedDelay, ReturnDelay);
+  RightToLeft(red, green, blue, EyeSize, SpeedDelay, ReturnDelay);
+  OutsideToCenter(red, green, blue, EyeSize, SpeedDelay, ReturnDelay);
+  CenterToOutside(red, green, blue, EyeSize, SpeedDelay, ReturnDelay);
+}
+
+void CenterToOutside(byte red, byte green, byte blue, int EyeSize, int SpeedDelay, int ReturnDelay) {
+  for(int i =((NUM_LEDS-EyeSize)/2); i>=0; i--) {
+    setAll(0,0,0);
+    
+    setPixel(i, red/10, green/10, blue/10);
+    for(int j = 1; j <= EyeSize; j++) {
+      setPixel(i+j, red, green, blue); 
+    }
+    setPixel(i+EyeSize+1, red/10, green/10, blue/10);
+    
+    setPixel(NUM_LEDS-i, red/10, green/10, blue/10);
+    for(int j = 1; j <= EyeSize; j++) {
+      setPixel(NUM_LEDS-i-j, red, green, blue); 
+    }
+    setPixel(NUM_LEDS-i-EyeSize-1, red/10, green/10, blue/10);
+    
+    showStrip();
+    delay(SpeedDelay);
+  }
+  delay(ReturnDelay);
+}
+
+void OutsideToCenter(byte red, byte green, byte blue, int EyeSize, int SpeedDelay, int ReturnDelay) {
+  for(int i = 0; i<=((NUM_LEDS-EyeSize)/2); i++) {
+    setAll(0,0,0);
+    
+    setPixel(i, red/10, green/10, blue/10);
+    for(int j = 1; j <= EyeSize; j++) {
+      setPixel(i+j, red, green, blue); 
+    }
+    setPixel(i+EyeSize+1, red/10, green/10, blue/10);
+    
+    setPixel(NUM_LEDS-i, red/10, green/10, blue/10);
+    for(int j = 1; j <= EyeSize; j++) {
+      setPixel(NUM_LEDS-i-j, red, green, blue); 
+    }
+    setPixel(NUM_LEDS-i-EyeSize-1, red/10, green/10, blue/10);
+    
+    showStrip();
+    delay(SpeedDelay);
+  }
+  delay(ReturnDelay);
+}
+
+void LeftToRight(byte red, byte green, byte blue, int EyeSize, int SpeedDelay, int ReturnDelay) {
+  for(int i = 0; i < NUM_LEDS-EyeSize-2; i++) {
+    setAll(0,0,0);
+    setPixel(i, red/10, green/10, blue/10);
+    for(int j = 1; j <= EyeSize; j++) {
+      setPixel(i+j, red, green, blue); 
+    }
+    setPixel(i+EyeSize+1, red/10, green/10, blue/10);
+    showStrip();
+    delay(SpeedDelay);
+  }
+  delay(ReturnDelay);
+}
+
+void RightToLeft(byte red, byte green, byte blue, int EyeSize, int SpeedDelay, int ReturnDelay) {
+  for(int i = NUM_LEDS-EyeSize-2; i > 0; i--) {
+    setAll(0,0,0);
+    setPixel(i, red/10, green/10, blue/10);
+    for(int j = 1; j <= EyeSize; j++) {
+      setPixel(i+j, red, green, blue); 
+    }
+    setPixel(i+EyeSize+1, red/10, green/10, blue/10);
+    showStrip();
+    delay(SpeedDelay);
+  }
+  delay(ReturnDelay);
+}
+
+// Twinkle
+
+void Twinkle(byte red, byte green, byte blue, int Count, int SpeedDelay, boolean OnlyOne) {
+  setAll(0,0,0);
+  
+  for (int i=0; i<Count; i++) {
+     setPixel(random(NUM_LEDS),red,green,blue);
+     showStrip();
+     delay(SpeedDelay);
+     if(OnlyOne) { 
+       setAll(0,0,0); 
+     }
+   }
+  
+  delay(SpeedDelay);
+}
