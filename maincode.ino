@@ -114,7 +114,7 @@ void startShow(int i) {
 }
 
 
-/*************************** BOUCLE EFFETS ***************************/
+/*************************** BOUCLE EFFETS DE BASE ***************************/
 
 // Fill the dots one after the other with a color
 void colorWipe(uint32_t c, uint8_t wait) {
@@ -201,6 +201,10 @@ uint32_t Wheel(byte WheelPos) {
   return strip.Color(WheelPos * 3, 255 - WheelPos * 3, 0);
 }
 
+
+
+/*************************** BOUCLE NOUVEAUX EFFETS DE BASE ***************************/
+// https://www.tweaking4all.com/hardware/arduino/adruino-led-strip-effects/
 //Fade IN Fade OUT
 void RGBLoop(){
   for(int j = 0; j < 3; j++ ) { 
