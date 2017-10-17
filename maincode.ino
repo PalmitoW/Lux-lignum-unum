@@ -42,6 +42,8 @@ int showType = 0;
 
 void setup() {
   pinMode(BUTTON_PIN_SELECT, INPUT_PULLUP);
+  pinMode(BUTTON_PIN_START, INPUT_PULLUP);
+  pinMode(BUTTON_PIN_FLOOR, INPUT_PULLUP);
   strip.begin();
   strip.show(); // Initialize all pixels to 'off'
 }
@@ -68,7 +70,8 @@ void setup() {
 void loop() {
   // Get current button state.
   bool newState = digitalRead(BUTTON_PIN_SELECT);
-  bool bottomOn = digitalRead(BUTTON_PIN_FLOOR);
+  bool floorState = digitalRead(BUTTON_PIN_FLOOR);
+  int maxCase = 26;
 
   // Check if state changed from high to low (button press).
   if (newState == LOW && oldState == HIGH) {
@@ -77,10 +80,19 @@ void loop() {
     // Check if button is still low after debounce.
     newState = digitalRead(BUTTON_PIN_SELECT);
     if (newState == LOW) {
-      showType++;
-      if (showType > 9)
+      floorState = digitalRead(BUTTON_PIN_FLOOR);
+      if (floorState == LOW){
+        showType++;
+        if (showType > maxCase)
         showType=0;
       startShow(showType);
+      }else{
+        showType--;
+        if (showType < 0)
+        showType=maxCase;
+      startShow(showType);
+      }
+      
     }
   }
 
