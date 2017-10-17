@@ -43,7 +43,7 @@ int showType = 0;
 void setup() {
   pinMode(BUTTON_PIN_SELECT, INPUT_PULLUP);
   pinMode(BUTTON_PIN_START, INPUT_PULLUP);
-  pinMode(BUTTON_PIN_FLOOR, INPUT_PULLUP);
+  pinMode(BUTTON_PIN_FLOOR, INPUT);
   strip.begin();
   strip.show(); // Initialize all pixels to 'off'
 }
@@ -76,6 +76,14 @@ et quand tu appuies sur le second bouton tu regardes la valeur du premier, si el
 
 
 void loop() {
+  
+  /*
+    noInterrupts();
+  // critical, time-sensitive code here
+  interrupts();
+  // other code here
+  */
+  
   // Get current button state.
   bool newState = digitalRead(BUTTON_PIN_SELECT);
   bool floorState = digitalRead(BUTTON_PIN_FLOOR);
