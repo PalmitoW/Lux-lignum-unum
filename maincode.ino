@@ -110,6 +110,20 @@ void startShow(int i) {
             break;
     case 9: theaterChaseRainbow(50);
             break;
+    case 10: RGBLoop();
+            break;      
+    case 11: theaterChaseRainbow(50);
+            break;
+    case 12: theaterChaseRainbow(50);
+            break;
+    case 13: theaterChaseRainbow(50);
+            break;
+    case 14: theaterChaseRainbow(50);
+            break;      
+    case 16: theaterChaseRainbow(50);
+            break;
+    case 17: theaterChaseRainbow(50);
+            break; 
   }
 }
 
@@ -186,24 +200,8 @@ void theaterChaseRainbow(uint8_t wait) {
   }
 }
 
-// Input a value 0 to 255 to get a color value.
-// The colours are a transition r - g - b - back to r.
-uint32_t Wheel(byte WheelPos) {
-  WheelPos = 255 - WheelPos;
-  if(WheelPos < 85) {
-    return strip.Color(255 - WheelPos * 3, 0, WheelPos * 3);
-  }
-  if(WheelPos < 170) {
-    WheelPos -= 85;
-    return strip.Color(0, WheelPos * 3, 255 - WheelPos * 3);
-  }
-  WheelPos -= 170;
-  return strip.Color(WheelPos * 3, 255 - WheelPos * 3, 0);
-}
 
-
-
-/*************************** BOUCLE NOUVEAUX EFFETS DE BASE ***************************/
+/*************************** BOUCLE NOUVEAUX EFFETS ***************************/
 // https://www.tweaking4all.com/hardware/arduino/adruino-led-strip-effects/
 //Fade IN Fade OUT
 void RGBLoop(){
@@ -649,3 +647,23 @@ void BouncingBalls(byte red, byte green, byte blue, int BallCount) {
     setAll(0,0,0);
   }
 }
+
+/**************************** FONCTION PARAMETRES **********************/
+
+// Parametres fonction de base
+
+// Input a value 0 to 255 to get a color value.
+// The colours are a transition r - g - b - back to r.
+uint32_t Wheel(byte WheelPos) {
+  WheelPos = 255 - WheelPos;
+  if(WheelPos < 85) {
+    return strip.Color(255 - WheelPos * 3, 0, WheelPos * 3);
+  }
+  if(WheelPos < 170) {
+    WheelPos -= 85;
+    return strip.Color(0, WheelPos * 3, 255 - WheelPos * 3);
+  }
+  WheelPos -= 170;
+  return strip.Color(WheelPos * 3, 255 - WheelPos * 3, 0);
+}
+
