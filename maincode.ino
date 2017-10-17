@@ -112,17 +112,45 @@ void startShow(int i) {
             break;
     case 10: RGBLoop();
             break;      
-    case 11: theaterChaseRainbow(50);
+    case 11: FadeInOut(0xff, 0x00, 0x00); // red
+             FadeInOut(0xff, 0xff, 0xff); // white 
+             FadeInOut(0x00, 0x00, 0xff); // blue
             break;
-    case 12: theaterChaseRainbow(50);
+    case 12: Strobe(0xff, 0xff, 0xff, 10, 50, 1000);
             break;
-    case 13: theaterChaseRainbow(50);
+    case 13: HalloweenEyes(0xff, 0x00, 0x00, 
+              1, 4, 
+              true, random(5,50), random(50,150), 
+              random(1000, 10000));
             break;
-    case 14: theaterChaseRainbow(50);
+    case 14: CylonBounce(0xff, 0, 0, 4, 10, 50);
             break;      
-    case 16: theaterChaseRainbow(50);
+    case 16: NewKITT(0xff, 0, 0, 8, 10, 50);
             break;
-    case 17: theaterChaseRainbow(50);
+    case 17: Twinkle(0xff, 0, 0, 10, 100, false);
+            break; 
+    case 18: TwinkleRandom(20, 100, false);
+            break; 
+    case 19: Sparkle(0xff, 0xff, 0xff, 0);
+            break;
+     case 20: SnowSparkle(0x10, 0x10, 0x10, 20, random(100,1000));
+            break; 
+     case 21: RunningLights(0xff,0xff,0x00, 50);
+            break; 
+     case 22: colorWipe(0x00,0xff,0x00, 50);
+              colorWipe(0x00,0x00,0x00, 50);
+            break; 
+     case 23: rainbowCycle(20);
+            break; 
+     case 24: Fire(55,120,15);
+            break; 
+     case 25: BouncingBalls(0xff,0,0, 3);
+            break; 
+     case 26: byte colors[3][3] = { {0xff, 0,0}, 
+                        {0xff, 0xff, 0xff}, 
+                        {0   , 0   , 0xff} };
+
+              BouncingColoredBalls(3, colors);
             break; 
   }
 }
@@ -229,6 +257,26 @@ void RGBLoop(){
   }
 }
 
+
+void FadeInOut(byte red, byte green, byte blue){
+  float r, g, b;
+      
+  for(int k = 0; k < 256; k=k+1) { 
+    r = (k/256.0)*red;
+    g = (k/256.0)*green;
+    b = (k/256.0)*blue;
+    setAll(r,g,b);
+    showStrip();
+  }
+     
+  for(int k = 255; k >= 0; k=k-2) {
+    r = (k/256.0)*red;
+    g = (k/256.0)*green;
+    b = (k/256.0)*blue;
+    setAll(r,g,b);
+    showStrip();
+  }
+}
 
 // strobe
 void Strobe(byte red, byte green, byte blue, int StrobeCount, int FlashDelay, int EndPause){
