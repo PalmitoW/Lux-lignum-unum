@@ -53,7 +53,7 @@ void setup() {
 * A FAIRE
 
 * Objectifs:
-* l’interrupteur index monte le programme
+*OK* l’interrupteur index monte le programme
 * l'interrupteur index + bas descend le pogramme
 * l’interrupteur majeur lance le programme
 * une(ou plusieurs) led au dessus de la main indique sur quel programme on est.
@@ -68,6 +68,7 @@ void setup() {
 void loop() {
   // Get current button state.
   bool newState = digitalRead(BUTTON_PIN_SELECT);
+  bool bottomOn = digitalRead(BUTTON_PIN_FLOOR);
 
   // Check if state changed from high to low (button press).
   if (newState == LOW && oldState == HIGH) {
