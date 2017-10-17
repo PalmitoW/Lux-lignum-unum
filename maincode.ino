@@ -57,6 +57,14 @@ void setup() {
 * Objectifs:
 *OK* l’interrupteur index monte le programme
 * l'interrupteur index + bas descend le pogramme
+* conseils Brice : 
+" 
+bah tu fais un truc avec des variables qui s'initialisent
+genre quand t'appuie sur le premier bouton tu met une variable à 1 pendant un temps determiné, quand t'appuies sur le second bouton tu check la variable en question
+ou alors faut juste checker la valeur en entrée du capteur
+genre tu configures le premier bouton en entrée numérique, et tu met un interrupt sur le second bouton
+et quand tu appuies sur le second bouton tu regardes la valeur du premier, si elle est dans la bonne configuration tu fais comem tu veux
+"
 * l’interrupteur majeur lance le programme
 * une(ou plusieurs) led au dessus de la main indique sur quel programme on est.
 * l’interrupteur du bas (sol) lance un petit effet toujours le même
