@@ -34,7 +34,7 @@ Adafruit_NeoPixel strip = Adafruit_NeoPixel(PIXEL_COUNT, PIXEL_PIN, NEO_GRB + NE
 
 bool oldState = HIGH;
 int showType = 0;
-int NUM_LED = PIXEL_COUNT;
+int NUM_LEDS = PIXEL_COUNT;
 
 /*************************** BOUCLE SETUP ***************************/
 
