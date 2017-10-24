@@ -18,7 +18,7 @@
 #endif
 
 #define BUTTON_PIN_SELECT   0    // Bouton du haut : select
-#define BUTTON_PIN_START   3    // Bouton du bas : start
+#define BUTTON_PIN_START   2    // Bouton du bas : start
 #define BUTTON_PIN_FLOOR   4    // Bouton pied de baton
 
 #define PIXEL_PIN    1    // Digital IO pin connected to the NeoPixels.
@@ -110,6 +110,7 @@ void loop() {
   // Get current button state.
   bool newState = digitalRead(BUTTON_PIN_SELECT);
   bool floorState = digitalRead(BUTTON_PIN_FLOOR);
+  bool startState = digitalRead(BUTTON_PIN_START);
   int maxCase = 25;
 
   // Check if state changed from high to low (button press).
@@ -129,7 +130,10 @@ void loop() {
         showType--;
         if (showType < 0)
         showType=maxCase;
-      startShow(showType);
+        startState = digitalRead(BUTTON_PIN_START)
+        if (startState == HIGH){
+          startShow(showType);
+        }
       }
       
     }
