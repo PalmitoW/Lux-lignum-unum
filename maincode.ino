@@ -17,24 +17,24 @@
   #include <avr/power.h>
 #endif
 
-#define BUTTON_PIN_SELECT   0    // Bouton du haut : select
-#define BUTTON_PIN_START   2    // Bouton du bas : start
-#define BUTTON_PIN_FLOOR   4    // Bouton pied de baton
+#define   BUTTON_PIN_SELECT  0    // Bouton du haut : select
+#define   BUTTON_PIN_START   2    // Bouton du bas : start
+#define   BUTTON_PIN_FLOOR   4    // Bouton pied de baton
 
-#define PIXEL_PIN    1    // Digital IO pin connected to the NeoPixels.
+#define   PIXEL_PIN          1    // Digital IO pin connected to the NeoPixels.
 
-#define NUM_LEDS 42
+#define   NUM_LEDS           42
 // baton d'alexis : led temoin : 18
 
 // Breath param
-#define TOTAL_STEPS   60
-#define MAX_BRI       35
-#define DELAY         1
-#define WHEEL_COLOR   170
-#define WHEEL_RANGE   120
-#define PROP_PIX_ON   4 
-#define PROP_PIX_TOT  30
-#define RANDPWR         1
+#define   TOTAL_STEPS        60
+#define   MAX_BRI            35
+#define   DELAY              1
+#define   WHEEL_COLOR        170
+#define   WHEEL_RANGE        120
+#define   PROP_PIX_ON        4 
+#define   PROP_PIX_TOT       30
+#define   RANDPWR            1
 
 int ledFadeTime = 5;
 
