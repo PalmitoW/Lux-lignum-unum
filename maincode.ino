@@ -793,7 +793,7 @@ void BouncingColoredBalls(int BallCount, byte colors[][3]) {
 #define TOTAL_STEPS 100
 void breathRand() {
     // Init next color
-    for(int i=0; i < NUMPIXELS; i++) {
+    for(int i=0; i < NUM_LEDS; i++) {
       wheelPixelsNext[i] = constrain(170 + random(120) - 60, 0, 255);
     }
 
@@ -814,7 +814,7 @@ void breathRand() {
     }
 
     // Copy to previous
-    for(int i=0; i < NUMPIXELS; i++) {
+    for(int i=0; i < NUM_LEDS; i++) {
       wheelPixelsCurrent[i] = wheelPixelsNext[i];
     }
 }
