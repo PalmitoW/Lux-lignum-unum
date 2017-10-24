@@ -130,7 +130,7 @@ void loop() {
         showType--;
         if (showType < 0)
         showType=maxCase;
-        startState = digitalRead(BUTTON_PIN_START)
+        startState = digitalRead(BUTTON_PIN_START);
         if (startState == HIGH){
           startShow(showType);
         }
