@@ -153,7 +153,7 @@ void startShow(int i) {
     case 3: colorWipe(strip.Color(0, 0, 255), 50);  // Blue
             break;
     case 4: theaterChase(strip.Color(127, 127, 127), 50); // White
-            break;
+            break; 
     case 5: theaterChase(strip.Color(127,   0,   0), 50); // Red
             break;
     case 6: theaterChase(strip.Color(  0,   0, 127), 50); // Blue
