@@ -23,7 +23,6 @@
 
 #define PIXEL_PIN    1    // Digital IO pin connected to the NeoPixels.
 
-#define PIXEL_COUNT 42
 #define NUM_LEDS 42
 // baton d'alexis : led temoin : 18
 
@@ -43,7 +42,7 @@
 //   NEO_GRB     Pixels are wired for GRB bitstream, correct for neopixel stick
 //   NEO_KHZ400  400 KHz bitstream (e.g. FLORA pixels)
 //   NEO_KHZ800  800 KHz bitstream (e.g. High Density LED strip), correct for neopixel stick
-Adafruit_NeoPixel strip = Adafruit_NeoPixel(PIXEL_COUNT, PIXEL_PIN, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel strip = Adafruit_NeoPixel(NUM_LEDS, PIXEL_PIN, NEO_GRB + NEO_KHZ800);
 
 /******************** INTRODUCTION DES VARIABLES ********************/
 
