@@ -111,7 +111,7 @@ void loop() {
   // Get current button state.
   bool newState = digitalRead(BUTTON_PIN_SELECT);
   bool floorState = digitalRead(BUTTON_PIN_FLOOR);
-  int maxCase = 26;
+  int maxCase = 25;
 
   // Check if state changed from high to low (button press).
   if (newState == LOW && oldState == HIGH) {
@@ -191,16 +191,13 @@ void startShow(int i) {
             break; 
      case 21: RunningLights(0xff,0xff,0x00, 50);
             break; 
-     case 22: colorWipe(0x00,0xff,0x00, 50);
-              colorWipe(0x00,0x00,0x00, 50);
+     case 22: rainbowCycle(20);
             break; 
-     case 23: rainbowCycle(20);
+     case 23: Fire(55,120,15);
             break; 
-     case 24: Fire(55,120,15);
+     case 24: BouncingBalls(0xff,0,0, 3);
             break; 
-     case 25: BouncingBalls(0xff,0,0, 3);
-            break; 
-     case 26: byte colors[3][3] = { {0xff, 0,0}, 
+     case 25: byte colors[3][3] = { {0xff, 0,0}, 
                         {0xff, 0xff, 0xff}, 
                         {0   , 0   , 0xff} };
 
