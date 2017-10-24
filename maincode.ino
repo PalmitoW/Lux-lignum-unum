@@ -12,6 +12,11 @@
 
 #include <Adafruit_NeoPixel.h>
 
+/** ça sert à quelque chose le truc en dessous là? **/
+#ifdef __AVR__
+  #include <avr/power.h>
+#endif
+
 #define BUTTON_PIN_SELECT   0    // Bouton du haut : select
 #define BUTTON_PIN_START   3    // Bouton du bas : start
 #define BUTTON_PIN_FLOOR   4    // Bouton pied de baton
@@ -20,6 +25,15 @@
 
 #define PIXEL_COUNT 42
 // baton d'alexis : led temoin : 18
+
+// Breath param
+#define TOTAL_STEPS   60
+#define MAX_BRI       35
+#define DELAY         1
+#define WHEEL_COLOR   170
+#define WHEEL_RANGE   120
+#define PROP_PIX_ON   4 
+#define PROP_PIX_TOT  30
 
 // Parameter 1 = number of pixels in strip,  neopixel stick has 8
 // Parameter 2 = pin number (most are valid)
@@ -42,11 +56,20 @@ int NUM_LEDS = PIXEL_COUNT;
 
 
 void setup() {
+  /*** ça sert à quelque chose ça? **/
+  // This is for Trinket 5V 16MHz, you can remove these three lines if you are not using a Trinket
+  #if defined (__AVR_ATtiny85__)
+    if (F_CPU == 16000000) clock_prescale_set(clock_div_1);
+  #endif
+  // End of trinket special code
+  
+  
   pinMode(BUTTON_PIN_SELECT, INPUT_PULLUP);
   pinMode(BUTTON_PIN_START, INPUT_PULLUP);
   pinMode(BUTTON_PIN_FLOOR, INPUT);
   strip.begin();
   strip.show(); // Initialize all pixels to 'off'
+  delay(100);
 }
 
 /************************ BOUCLE EST BOUCLEE ************************/
