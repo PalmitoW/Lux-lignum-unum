@@ -6,7 +6,7 @@
 // On a Trinket or Gemma we suggest changing this to 1
 #define LED_PIN               1 
 #define BUTTON_PIN_SELECT     0   // Bouton du haut : select
-#define BUTTON_PIN_START      3   // Bouton du bas : start
+#define BUTTON_PIN_START      2   // Bouton du bas : start
 #define BUTTON_PIN_FLOOR      4   // Bouton pied de baton
 
 // How many NeoPixels are attached to the Arduino?
