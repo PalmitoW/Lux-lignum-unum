@@ -34,6 +34,9 @@
 #define WHEEL_RANGE   120
 #define PROP_PIX_ON   4 
 #define PROP_PIX_TOT  30
+#define RANDPWR         1
+
+int ledFadeTime = 5;
 
 // Parameter 1 = number of pixels in strip,  neopixel stick has 8
 // Parameter 2 = pin number (most are valid)
