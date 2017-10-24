@@ -624,7 +624,7 @@ void theaterChaseRainbow(int SpeedDelay) {
   }
 }
 
-byte * Wheel(byte WheelPos2) {
+byte * Wheel2(byte WheelPos2) {
   static byte c[3];
   
   if(WheelPos2 < 85) {
