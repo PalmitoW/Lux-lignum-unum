@@ -81,23 +81,11 @@ void setup() {
 * A FAIRE
 
 * Objectifs:
-*OK* l’interrupteur index monte le programme
-* l'interrupteur index + bas descend le pogramme
-* conseils Brice : 
-" 
-bah tu fais un truc avec des variables qui s'initialisent
-genre quand t'appuie sur le premier bouton tu met une variable à 1 pendant un temps determiné, quand t'appuies sur le second bouton tu check la variable en question
-ou alors faut juste checker la valeur en entrée du capteur
-genre tu configures le premier bouton en entrée numérique, et tu met un interrupt sur le second bouton
-et quand tu appuies sur le second bouton tu regardes la valeur du premier, si elle est dans la bonne configuration tu fais comem tu veux
-"
-* l’interrupteur majeur lance le programme
-* une(ou plusieurs) led au dessus de la main indique sur quel programme on est.
-* l’interrupteur du bas (sol) lance un petit effet toujours le même
-
-* Blocage et déblocage du baton :
-* appuyer sur l’interrupteur du bas (sol) puis sur l’interrupteur de l’index
-
+*OK* l’interrupteur SELECT monte le programme
+* l'interrupteur SELECT + FLOOR descend le pogramme
+* l’interrupteur START lance le programme
+* une led au dessus de la main indique sur quel programme on est
+* l’interrupteur FLOOR lance un petit effet (toujours le même?)
 */
 
 
@@ -799,6 +787,38 @@ void BouncingColoredBalls(int BallCount, byte colors[][3]) {
     setAll(0,0,0);
   }
 }
+
+/**************************** EFFETS QUENTIN **********************/
+/*
+#define TOTAL_STEPS 100
+void breathRand() {
+    // Init next color
+    for(int i=0; i < NUMPIXELS; i++) {
+      wheelPixelsNext[i] = constrain(170 + random(120) - 60, 0, 255);
+    }
+
+    for(int Index=0; Index < TOTAL_STEPS; Index++) {
+      for(int i=0; i < NUMPIXELS; i++) {
+        uint32_t colorCurrent  = Wheel(wheelPixelsCurrent[i]);
+        uint32_t colorNext     = Wheel(wheelPixelsNext[i]);
+        
+        uint8_t red = ((Red(colorCurrent) * (TOTAL_STEPS - Index)) + (Red(colorNext) * Index)) / TOTAL_STEPS;
+        uint8_t green = ((Green(colorCurrent) * (TOTAL_STEPS - Index)) + (Green(colorNext) * Index)) / TOTAL_STEPS;
+        uint8_t blue = ((Blue(colorCurrent) * (TOTAL_STEPS - Index)) + (Blue(colorNext) * Index)) / TOTAL_STEPS;
+
+        strip.setPixelColor(i, strip.Color(red, green, blue));
+      }
+
+      strip.show();
+      delay(20);
+    }
+
+    // Copy to previous
+    for(int i=0; i < NUMPIXELS; i++) {
+      wheelPixelsCurrent[i] = wheelPixelsNext[i];
+    }
+}
+*/
 
 /**************************** FONCTION PARAMETRES **********************/
 
