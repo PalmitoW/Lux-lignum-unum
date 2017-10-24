@@ -24,6 +24,7 @@
 #define PIXEL_PIN    1    // Digital IO pin connected to the NeoPixels.
 
 #define PIXEL_COUNT 42
+#define NUM_LEDS 42
 // baton d'alexis : led temoin : 18
 
 // Breath param
@@ -48,7 +49,6 @@ Adafruit_NeoPixel strip = Adafruit_NeoPixel(PIXEL_COUNT, PIXEL_PIN, NEO_GRB + NE
 
 bool oldState = HIGH;
 int showType = 0;
-int NUM_LEDS = PIXEL_COUNT;
 
 /*************************** BOUCLE SETUP ***************************/
 
