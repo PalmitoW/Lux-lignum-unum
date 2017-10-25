@@ -8,6 +8,7 @@
 *
 *
 */
+
 /******************** INTRODUCTION ENTREES SORTIES ********************/
 
 #include <Adafruit_NeoPixel.h>
@@ -86,7 +87,7 @@ void setup() {
 * l'interrupteur SELECT + FLOOR descend le pogramme OK A TESTER
 * l’interrupteur START lance le programme OK A TESTER
 * une led au dessus de la main indique sur quel programme on est OK A TESTER
-* l’interrupteur FLOOR lance un petit effet (toujours le même?)
+* l’interrupteur FLOOR lance un petit effet floorShow (toujours le même?)
 */
 
 
@@ -127,6 +128,9 @@ void loop() {
       startState = digitalRead(BUTTON_PIN_START);
       if (startState == HIGH)
           startShow(showType);
+      floorState = digitalRead(BUTTON_PIN_FLOOR);
+      if (floorState == HIGH)
+          floorShow();
     }
   }
 
@@ -259,7 +263,10 @@ void startShow(int i) {
             break; 
   }
 }
-
+/******** FLOOR SHOW --> effet simple ********/
+void floorShow(void){
+  
+}
 
 /*************************** BOUCLE EFFETS DE BASE ***************************/
 
