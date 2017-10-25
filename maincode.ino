@@ -82,8 +82,8 @@ void setup() {
 
 * Objectifs:
 *OK* l’interrupteur SELECT monte le programme
-* l'interrupteur SELECT + FLOOR descend le pogramme
-* l’interrupteur START lance le programme
+* l'interrupteur SELECT + FLOOR descend le pogramme OK A TESTER
+* l’interrupteur START lance le programme OK A TESTER
 * une led au dessus de la main indique sur quel programme on est
 * l’interrupteur FLOOR lance un petit effet (toujours le même?)
 */
@@ -116,17 +116,14 @@ void loop() {
         showType++;
         if (showType > maxCase)
         showType=0;
-      startShow(showType);
       }else{
         showType--;
         if (showType < 0)
         showType=maxCase;
         startState = digitalRead(BUTTON_PIN_START);
-        if (startState == HIGH){
-          startShow(showType);
-        }
       }
-      
+      if (startState == HIGH)
+          startShow(showType);
     }
   }
 
