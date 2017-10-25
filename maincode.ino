@@ -25,6 +25,7 @@
 
 #define   NUM_LEDS           42
 // baton d'alexis : led temoin : 18
+#define   LED_TEMOIN         18
 
 // Breath param
 #define   TOTAL_STEPS        60
@@ -116,12 +117,14 @@ void loop() {
         showType++;
         if (showType > maxCase)
         showType=0;
+        selectShow(showType);
       }else{
         showType--;
         if (showType < 0)
         showType=maxCase;
-        startState = digitalRead(BUTTON_PIN_START);
+        selectShow(showType);
       }
+      startState = digitalRead(BUTTON_PIN_START);
       if (startState == HIGH)
           startShow(showType);
     }
@@ -132,6 +135,66 @@ void loop() {
 }
 
 /*************************** SWITCH CASES ***************************/
+
+/******** selectShow ********/
+void selectShow(int i){
+  switch(i){
+    case 0: setPixel(LED_TEMOIN, 0, 0, 0);
+    break;
+    case 1: setPixel(LED_TEMOIN, 0, 0, 0);
+    break;
+    case 2: setPixel(LED_TEMOIN, 0, 0, 0);
+    break;
+    case 3: setPixel(LED_TEMOIN, 0, 0, 0);
+    break;
+    case 4: setPixel(LED_TEMOIN, 0, 0, 0);
+    break;
+    case 5: setPixel(LED_TEMOIN, 0, 0, 0);
+    break;
+    case 6: setPixel(LED_TEMOIN, 0, 0, 0);
+    break;
+    case 7: setPixel(LED_TEMOIN, 0, 0, 0);
+    break;
+    case 8: setPixel(LED_TEMOIN, 0, 0, 0);
+    break;
+    case 9: setPixel(LED_TEMOIN, 0, 0, 0);
+    break;
+    case 10: setPixel(LED_TEMOIN, 0, 0, 0);
+    break;
+    case 11: setPixel(LED_TEMOIN, 0, 0, 0);
+    break;
+    case 12: setPixel(LED_TEMOIN, 0, 0, 0);
+    break;
+    case 13: setPixel(LED_TEMOIN, 0, 0, 0);
+    break;
+    case 14: setPixel(LED_TEMOIN, 0, 0, 0);
+    break;
+    case 15: setPixel(LED_TEMOIN, 0, 0, 0);
+    break;
+    case 16: setPixel(LED_TEMOIN, 0, 0, 0);
+    break;
+    case 17: setPixel(LED_TEMOIN, 0, 0, 0);
+    break;
+    case 18: setPixel(LED_TEMOIN, 0, 0, 0);
+    break;
+    case 19: setPixel(LED_TEMOIN, 0, 0, 0);
+    break;
+    case 20: setPixel(LED_TEMOIN, 0, 0, 0);
+    break;
+    case 21: setPixel(LED_TEMOIN, 0, 0, 0);
+    break;
+    case 22: setPixel(LED_TEMOIN, 0, 0, 0);
+    break;
+    case 23: setPixel(LED_TEMOIN, 0, 0, 0);
+    break;
+    case 24: setPixel(LED_TEMOIN, 0, 0, 0);
+    break;
+    case 25: setPixel(LED_TEMOIN, 0, 0, 0);
+    break;
+  }
+}
+
+/******** startShow ********/
 
 void startShow(int i) {
   switch(i){
