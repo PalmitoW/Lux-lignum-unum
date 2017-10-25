@@ -85,7 +85,7 @@ void setup() {
 *OK* l’interrupteur SELECT monte le programme
 * l'interrupteur SELECT + FLOOR descend le pogramme OK A TESTER
 * l’interrupteur START lance le programme OK A TESTER
-* une led au dessus de la main indique sur quel programme on est
+* une led au dessus de la main indique sur quel programme on est OK A TESTER
 * l’interrupteur FLOOR lance un petit effet (toujours le même?)
 */
 
@@ -136,65 +136,65 @@ void loop() {
 
 /*************************** SWITCH CASES ***************************/
 
-/******** selectShow ********/
+/******** SELECT SHOW --> Affiche la led temoin ********/
 void selectShow(int i){
   switch(i){
     case 0: setPixel(LED_TEMOIN, 0, 0, 0);
     break;
-    case 1: setPixel(LED_TEMOIN, 0, 0, 0);
+    case 1: setPixel(LED_TEMOIN, 100, 0, 0);
     break;
-    case 2: setPixel(LED_TEMOIN, 0, 0, 0);
+    case 2: setPixel(LED_TEMOIN, 175, 0, 0);
     break;
-    case 3: setPixel(LED_TEMOIN, 0, 0, 0);
+    case 3: setPixel(LED_TEMOIN, 255, 0, 0);
     break;
-    case 4: setPixel(LED_TEMOIN, 0, 0, 0);
+    case 4: setPixel(LED_TEMOIN, 0, 100, 0);
     break;
-    case 5: setPixel(LED_TEMOIN, 0, 0, 0);
+    case 5: setPixel(LED_TEMOIN, 0, 175, 0);
     break;
-    case 6: setPixel(LED_TEMOIN, 0, 0, 0);
+    case 6: setPixel(LED_TEMOIN, 0, 255, 0);
     break;
-    case 7: setPixel(LED_TEMOIN, 0, 0, 0);
+    case 7: setPixel(LED_TEMOIN, 0, 0, 100);
     break;
-    case 8: setPixel(LED_TEMOIN, 0, 0, 0);
+    case 8: setPixel(LED_TEMOIN, 0, 0, 175);
     break;
-    case 9: setPixel(LED_TEMOIN, 0, 0, 0);
+    case 9: setPixel(LED_TEMOIN, 0, 0, 255);
     break;
-    case 10: setPixel(LED_TEMOIN, 0, 0, 0);
+    case 10: setPixel(LED_TEMOIN, 100, 100, 0);
     break;
-    case 11: setPixel(LED_TEMOIN, 0, 0, 0);
+    case 11: setPixel(LED_TEMOIN, 175, 175, 0);
     break;
-    case 12: setPixel(LED_TEMOIN, 0, 0, 0);
+    case 12: setPixel(LED_TEMOIN, 255, 255, 0);
     break;
-    case 13: setPixel(LED_TEMOIN, 0, 0, 0);
+    case 13: setPixel(LED_TEMOIN, 0, 100, 100);
     break;
-    case 14: setPixel(LED_TEMOIN, 0, 0, 0);
+    case 14: setPixel(LED_TEMOIN, 0, 175, 175);
     break;
-    case 15: setPixel(LED_TEMOIN, 0, 0, 0);
+    case 15: setPixel(LED_TEMOIN, 0, 255, 255);
     break;
-    case 16: setPixel(LED_TEMOIN, 0, 0, 0);
+    case 16: setPixel(LED_TEMOIN, 100, 0, 100);
     break;
-    case 17: setPixel(LED_TEMOIN, 0, 0, 0);
+    case 17: setPixel(LED_TEMOIN, 175, 0, 175);
     break;
-    case 18: setPixel(LED_TEMOIN, 0, 0, 0);
+    case 18: setPixel(LED_TEMOIN, 255, 0, 255);
     break;
-    case 19: setPixel(LED_TEMOIN, 0, 0, 0);
+    case 19: setPixel(LED_TEMOIN, 100, 100, 100);
     break;
-    case 20: setPixel(LED_TEMOIN, 0, 0, 0);
+    case 20: setPixel(LED_TEMOIN, 175, 175, 175);
     break;
-    case 21: setPixel(LED_TEMOIN, 0, 0, 0);
+    case 21: setPixel(LED_TEMOIN, 255, 255, 255);
     break;
-    case 22: setPixel(LED_TEMOIN, 0, 0, 0);
+    case 22: setPixel(LED_TEMOIN, 100, 175, 0);
     break;
-    case 23: setPixel(LED_TEMOIN, 0, 0, 0);
+    case 23: setPixel(LED_TEMOIN, 0, 100, 175);
     break;
-    case 24: setPixel(LED_TEMOIN, 0, 0, 0);
+    case 24: setPixel(LED_TEMOIN, 175, 0, 100);
     break;
-    case 25: setPixel(LED_TEMOIN, 0, 0, 0);
+    case 25: setPixel(LED_TEMOIN, 100, 175, 255);
     break;
   }
 }
 
-/******** startShow ********/
+/******** START SHOW --> effectue le programme ********/
 
 void startShow(int i) {
   switch(i){
