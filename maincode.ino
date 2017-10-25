@@ -265,7 +265,7 @@ void startShow(int i) {
 }
 /******** FLOOR SHOW --> effet simple ********/
 void floorShow(void){
-  
+      colorWipe(strip.Color(0, 0, 255), 50);  // Blue
 }
 
 /*************************** BOUCLE EFFETS DE BASE ***************************/
