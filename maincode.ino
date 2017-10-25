@@ -69,7 +69,7 @@ void setup() {
   
   pinMode(BUTTON_PIN_SELECT, INPUT_PULLUP);
   pinMode(BUTTON_PIN_START, INPUT_PULLUP);
-  pinMode(BUTTON_PIN_FLOOR, INPUT);
+  pinMode(BUTTON_PIN_FLOOR, INPUT_PULLUP);
   strip.begin();
   strip.show(); // Initialize all pixels to 'off'
   delay(100);
