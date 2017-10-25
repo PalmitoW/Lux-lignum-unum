@@ -87,7 +87,7 @@ void setup() {
 * l'interrupteur SELECT + FLOOR descend le pogramme OK A TESTER
 * l’interrupteur START lance le programme OK A TESTER
 * une led au dessus de la main indique sur quel programme on est OK A TESTER
-* l’interrupteur FLOOR lance un petit effet floorShow (toujours le même?)
+* l’interrupteur FLOOR lance un petit effet floorShow (toujours le même?) OK A TESTER
 */
 
 
