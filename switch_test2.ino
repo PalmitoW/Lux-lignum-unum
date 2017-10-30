@@ -174,19 +174,19 @@ void selectShow(int i){
 
 void startShow(int i) {
   switch(i){
-    case 0: colorWipe(strip.Color(0, 0, 0), 50);    // Black/off
+    case 0: colorWipe(strip.Color(0, 0, 0), 0);    // Black/off
             break;
-    case 1: colorWipe(strip.Color(255, 0, 0), 50);  // Red
+    case 1: colorWipe(strip.Color(255, 0, 0), 10);  // Red
             break;
-    case 2: colorWipe(strip.Color(0, 255, 0), 50);  // Green
+    case 2: colorWipe(strip.Color(0, 255, 0), 10);  // Green
             break;
-    case 3: colorWipe(strip.Color(0, 0, 255), 50);  // Blue
+    case 3: colorWipe(strip.Color(0, 0, 255), 10);  // Blue
             break;
   }
 }
 /******** FLOOR SHOW --> effet simple ********/
 void floorShow(void){
-      colorWipe(strip.Color(255, 255, 255), 50);  // White
+      colorWipe(strip.Color(255, 255, 255), 10);  // White
 }
 
 /*************************** BOUCLE EFFETS DE BASE ***************************/
