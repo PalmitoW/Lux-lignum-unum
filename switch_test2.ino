@@ -35,6 +35,7 @@
 #define   PROP_PIX_ON        4 
 #define   PROP_PIX_TOT       30
 #define   RANDPWR            1
+#define   MAXCASE            3
 
 int ledFadeTime = 5;
 
@@ -52,6 +53,7 @@ Adafruit_NeoPixel strip = Adafruit_NeoPixel(NUM_LEDS, PIXEL_PIN, NEO_GRB + NEO_K
 bool oldSelect = LOW;
 bool oldStart = LOW;
 bool oldFloor = LOW;
+  int MAXCASE = 3;
 int showType = 0;
 
 /*************************** BOUCLE SETUP ***************************/
@@ -94,9 +96,19 @@ void loop() {
   bool newSelect = digitalRead(BUTTON_PIN_SELECT);
   bool newFloor = digitalRead(BUTTON_PIN_FLOOR);
   bool newStart = digitalRead(BUTTON_PIN_START);
-  int maxCase = 3;
+  selectLoop();
+  startLoop();
+  floorLoop();
+  }
 
-  // Check if state changed from high to low (button press).
+  // Set the last button state to the old state.
+
+  oldStart = newStart;
+  oldFloor = newFloor;
+}
+/*************************** BUTTON LOOP ***************************/
+void selectLoop(){
+   // Check if state changed from high to low (button press).
   if (newSelect == LOW && oldSelect == HIGH) {
     // Short delay to debounce button.
     delay(20);
@@ -106,19 +118,22 @@ void loop() {
       newFloor = digitalRead(BUTTON_PIN_FLOOR);
       if (newFloor == LOW){
         showType++;
-        if (showType > maxCase)
+        if (showType > MAXCASE)
           showType=0;
         selectShow(showType);
       }else{
         if(showType == 0){
-          showType=maxCase;
+          showType=MAXCASE;
         }else{
           showType--;
         }
         selectShow(showType);
       }
-      // lancement
-      // Check if state changed from high to low (button press).
+     oldSelect = newSelect;
+}
+
+void startLoop(){
+        // Check if state changed from high to low (button press).
   if (newStart == LOW && oldStart == HIGH) {
     // Short delay to debounce button.
     delay(20);
@@ -127,28 +142,12 @@ void loop() {
     if (newStart == LOW) {
           startShow(showType);
     }
-      newFloor = digitalRead(BUTTON_PIN_FLOOR);
-      if (newFloor == HIGH)
-          floorShow();
-    }
-  }
-
-  // Set the last button state to the old state.
-  oldSelect = newSelect;
-  oldStart = newStart;
-  oldFloor = newFloor;
-}
-/*************************** BUTTON LOOP ***************************/
-void selectLoop(){
-  
-}
-
-void startLoop(){
-  
 }
   
 void floorLoop(){
-  
+   newFloor = digitalRead(BUTTON_PIN_FLOOR);
+      if (newFloor == HIGH)
+          floorShow();
 }
  
 /*************************** SWITCH CASES ***************************/
