@@ -48,16 +48,19 @@ void visageCauchemar(uint8_t wait){
         strip.setPixelColor(i-1, 255, 0, 0);
         strip.setPixelColor(i+1, 0, 0, 0);
         strip.setPixelColor(i+2, 0, 0, 0);
+        strip.show();
         delay(wait);
     }
     for(uint8_t i=0 ; i<20 ; i++){                                 //strob ON
         for(uint8_t j=0 ; j<10 ; i=i+2){
             strip.setPixelColor(i, 255, 0, 255);
             strip.setPixelColor(i-1, 255, 0, 0);
+            strip.show();
         }
         delay(wait);
         for(uint8_t j=0 ; j<10 ; i++){                             //strobe OFF
             strip.setPixelColor(i, 0, 0, 0);
+            strip.show();
         }
         delay(wait);
     }
@@ -73,7 +76,23 @@ Ce sort ne fonctionne pas en extérieur.
 Description effet : 
 Allume en violet le pied du bâton
 effet très simple
+*/
+case 3: setPixel(LED_TEMOIN, 255, 0, 125);
+    break;
 
+void tenebre(uint8_t wait){
+    for(uint8_t i=NUM_LEDS ; i>30 ; i--){
+        strip.setPixelColor(i, 255, 0, 255);
+    }
+    strip.show();
+    delay(wait);
+    for(uint8_t i=NUM_LEDS ; i>30 ; i--){
+        strip.setPixelColor(i, 0, 0, 0);
+    }
+    strip.show();
+}
+
+/*
 Effet 4
 Affichage en led: 000
 Nom du sort : Manteau d’ombre
