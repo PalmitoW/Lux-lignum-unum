@@ -13,7 +13,20 @@ case 1: setPixel(LED_TEMOIN, 255, 0, 255);
     break;
 
 void dagueDombre(uint8_t led1, uint8_t led2, uint8_t wait){
-  
+    for(uint8_t j=0; j<255 ; j++){
+        for(uint8_t i=led1; i<led2; i++) {
+        strip.setPixelColor(i, j, 0, j);
+        strip.show();
+        }
+    delay(wait);
+    }
+    for(uint8_t j=255; j>0 ; j--){
+        for(uint8_t i=led1; i<led2; i++) {
+        strip.setPixelColor(i, j, 0, j);
+        strip.show();
+        }
+    delay(wait*4);
+    }
 }
 
 /*
