@@ -1,0 +1,11 @@
+Séparer le code:
+
+1 faire une structure fonctionnelle du code algo
+
+2 Faire le code de base pour adafruit avec setup()
+
+3 Rédiger la fonction loop avec interrupteurs
+
+4 Rédiger la fonction show
+
+5 Rédiger différents effets
