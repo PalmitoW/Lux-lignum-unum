@@ -23,7 +23,7 @@
 #define   PIXEL_PIN          1    // Digital IO pin connected to the NeoPixels.
 
 #define   NUM_LEDS           42
-// baton d'alexis : led temoin : 18
+// baton d'alexis : led temoin : 18 & 19
 #define   LED_TEMOIN         18
 
 // Breath param
@@ -49,7 +49,9 @@ Adafruit_NeoPixel strip = Adafruit_NeoPixel(NUM_LEDS, PIXEL_PIN, NEO_GRB + NEO_K
 
 /******************** INTRODUCTION DES VARIABLES ********************/
 
-bool oldState = HIGH;
+bool oldSelect = LOW;
+bool oldStart = LOW;
+bool oldFloor = LOW;
 int showType = 0;
 
 /*************************** BOUCLE SETUP ***************************/
@@ -97,41 +99,50 @@ void loop() {
   */
   
   // Get current button state.
-  bool newState = digitalRead(BUTTON_PIN_SELECT);
-  bool floorState = digitalRead(BUTTON_PIN_FLOOR);
-  bool startState = digitalRead(BUTTON_PIN_START);
+  bool newSelect = digitalRead(BUTTON_PIN_SELECT);
+  bool newFloor = digitalRead(BUTTON_PIN_FLOOR);
+  bool newStart = digitalRead(BUTTON_PIN_START);
   int maxCase = 3;
 
   // Check if state changed from high to low (button press).
-  if (newState == LOW && oldState == HIGH) {
+  if (newSelect == LOW && oldSelect == HIGH) {
     // Short delay to debounce button.
     delay(20);
     // Check if button is still low after debounce.
-    newState = digitalRead(BUTTON_PIN_SELECT);
-    if (newState == LOW) {
-      floorState = digitalRead(BUTTON_PIN_FLOOR);
-      if (floorState == LOW){
+    newSelect = digitalRead(BUTTON_PIN_SELECT);
+    if (newSelect == LOW) {
+      newFloor = digitalRead(BUTTON_PIN_FLOOR);
+      if (newFloor == LOW){
         showType++;
         if (showType > maxCase)
-        showType=0;
+          showType=0;
         selectShow(showType);
       }else{
-        showType--;
-        if (showType < 0)
-        showType=maxCase;
+        if(showType == 0){
+          showType=maxCase;
+        }else{
+          showType--;
+        }
         selectShow(showType);
       }
-      startState = digitalRead(BUTTON_PIN_START);
-      if (startState == HIGH)
+      // lancement
+      // Check if state changed from high to low (button press).
+  if (newStart == LOW && oldStart == HIGH) {
+    // Short delay to debounce button.
+    delay(20);
+    // Check if button is still low after debounce.
+    newStart = digitalRead(BUTTON_PIN_START);
+    if (newStart == LOW) {
           startShow(showType);
-      floorState = digitalRead(BUTTON_PIN_FLOOR);
-      if (floorState == HIGH)
+    }
+      newFloor = digitalRead(BUTTON_PIN_FLOOR);
+      if (newFloor == HIGH)
           floorShow();
     }
   }
 
   // Set the last button state to the old state.
-  oldState = newState;
+  oldSelect = newSelect;
 }
 
 /*************************** SWITCH CASES ***************************/
