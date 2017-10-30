@@ -148,6 +148,19 @@ void floorLoop(){
    newFloor = digitalRead(BUTTON_PIN_FLOOR);
       if (newFloor == HIGH)
           floorShow();
+   // Get current button state.
+  bool newFloor = digitalRead(BUTTON_PIN_FLOOR);
+
+  // Check if state changed from high to low (button press).
+  if (newFloor == LOW && oldFloor == HIGH) {
+    // Short delay to debounce button.
+    delay(20);
+    // Check if button is still low after debounce.
+    newFloor = digitalRead(BUTTON_PIN_FLOOR);
+    if (newFloor == LOW) {
+      floorShow();
+    }
+  }
 }
  
 /*************************** SWITCH CASES ***************************/
