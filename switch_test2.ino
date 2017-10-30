@@ -2,11 +2,9 @@
 // #ProjetLuxLignumUnum
 
 /*
-*   Création d'un programme pour contrôler les leds
-*   disposées sur un bâton de magicien.
-*
-*
-*
+*   Test interrupteurs part 2
+* Test des fonctions select ++, select --
+* Test de la fonction floor
 */
 
 /******************** INTRODUCTION ENTREES SORTIES ********************/
