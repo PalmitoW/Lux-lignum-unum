@@ -89,15 +89,7 @@ void setup() {
 */
 
 
-void loop() {
-  
-  /*
-    noInterrupts();
-  // critical, time-sensitive code here
-  interrupts();
-  // other code here
-  */
-  
+void loop() { 
   // Get current button state.
   bool newSelect = digitalRead(BUTTON_PIN_SELECT);
   bool newFloor = digitalRead(BUTTON_PIN_FLOOR);
@@ -143,8 +135,22 @@ void loop() {
 
   // Set the last button state to the old state.
   oldSelect = newSelect;
+  oldStart = newStart;
+  oldFloor = newFloor;
+}
+/*************************** BUTTON LOOP ***************************/
+void selectLoop(){
+  
 }
 
+void startLoop(){
+  
+}
+  
+void floorLoop(){
+  
+}
+ 
 /*************************** SWITCH CASES ***************************/
 
 /******** SELECT SHOW --> Affiche la led temoin ********/
