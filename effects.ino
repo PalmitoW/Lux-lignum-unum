@@ -9,7 +9,7 @@ Description effet :
 Zone de violet tourne autour des interrupteurs
 fonction d’allumage de leds défini, augmenter l'intensite rapidement et diminution doucement
 */
-case 1: setPixel(LED_TEMOIN, 255, 0, 255);
+case 1: setPixel(LED_TEMOIN, 100, 0, 100);
     break;
 
 void dagueDombre(uint8_t led1, uint8_t led2, uint8_t wait){
@@ -37,8 +37,33 @@ Effet du sort :
 Lors du lancement de ce sort, désignez -dans un cercle de 3 mètres de rayon autour de vous- autant de personnes que vous le souhaitez. Aux yeux de ces cibles, votre visage disparaît sous un masque d'ombre évoquant un néant insondable et elles sont sous l'effet d'une peur.
 Description effet : 
 Petits points violets et rouge qui montent doucement puis tête du bâton qui clignote en rouge et violet
+*/
 
+case 2: setPixel(LED_TEMOIN, 255, 0, 125);
+    break;
 
+void visageCauchemar(uint8_t wait){
+    for(uint8_t i=NUM_LEDS ; j>4 ; i=i-2){
+        strip.setPixelColor(i, 255, 0, 255);
+        strip.setPixelColor(i-1, 255, 0, 0);
+        strip.setPixelColor(i+1, 0, 0, 0);
+        strip.setPixelColor(i+2, 0, 0, 0);
+        delay(wait);
+    }
+    for(uint8_t i=0 ; i<20 ; i++){                                 //strob ON
+        for(uint8_t j=0 ; j<10 ; i=i+2){
+            strip.setPixelColor(i, 255, 0, 255);
+            strip.setPixelColor(i-1, 255, 0, 0);
+        }
+        delay(wait);
+        for(uint8_t j=0 ; j<10 ; i++){                             //strobe OFF
+            strip.setPixelColor(i, 0, 0, 0);
+        }
+        delay(wait);
+    }
+}
+
+/*
 Effet 3
 Affichage en led: 000
 Nom du sort : Ténèbre
