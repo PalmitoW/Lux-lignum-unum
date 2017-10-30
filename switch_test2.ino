@@ -3,8 +3,8 @@
 
 /*
 *   Test interrupteurs part 2
-* Test des fonctions select ++, select --
-* Test de la fonction floor
+*   Test des fonctions select ++, select --
+*   Test de la fonction floor
 */
 
 /******************** INTRODUCTION ENTREES SORTIES ********************/
@@ -53,7 +53,6 @@ Adafruit_NeoPixel strip = Adafruit_NeoPixel(NUM_LEDS, PIXEL_PIN, NEO_GRB + NEO_K
 bool oldSelect = LOW;
 bool oldStart = LOW;
 bool oldFloor = LOW;
-  int MAXCASE = 3;
 int showType = 0;
 
 /*************************** BOUCLE SETUP ***************************/
@@ -92,22 +91,14 @@ void setup() {
 
 
 void loop() { 
-  // Get current button state.
-  bool newSelect = digitalRead(BUTTON_PIN_SELECT);
-  bool newFloor = digitalRead(BUTTON_PIN_FLOOR);
-  bool newStart = digitalRead(BUTTON_PIN_START);
   selectLoop(newSelect);
   startLoop(newStart);
   floorLoop(newFloor);
-  }
-
-  // Set the last button state to the old state.
-
-  oldStart = newStart;
-  oldFloor = newFloor;
 }
 /*************************** BUTTON LOOP ***************************/
 void selectLoop(bool newSelect){
+    bool newSelect = digitalRead(BUTTON_PIN_SELECT);
+    bool newFloor = digitalRead(BUTTON_PIN_FLOOR);
    // Check if state changed from high to low (button press).
   if (newSelect == LOW && oldSelect == HIGH) {
     // Short delay to debounce button.
@@ -132,7 +123,8 @@ void selectLoop(bool newSelect){
      oldSelect = newSelect;
 }
 
-void startLoop(bool newStart){
+void startLoop(){
+  bool newStart = digitalRead(BUTTON_PIN_START);
         // Check if state changed from high to low (button press).
   if (newStart == LOW && oldStart == HIGH) {
     // Short delay to debounce button.
@@ -142,15 +134,11 @@ void startLoop(bool newStart){
     if (newStart == LOW) {
           startShow(showType);
     }
+    oldStart = newStart;
 }
   
-void floorLoop(bool newFloor){
-   newFloor = digitalRead(BUTTON_PIN_FLOOR);
-      if (newFloor == HIGH)
-          floorShow();
-   // Get current button state.
+void floorLoop(){
   bool newFloor = digitalRead(BUTTON_PIN_FLOOR);
-
   // Check if state changed from high to low (button press).
   if (newFloor == LOW && oldFloor == HIGH) {
     // Short delay to debounce button.
@@ -161,6 +149,7 @@ void floorLoop(bool newFloor){
       floorShow();
     }
   }
+  oldFloor = newFloor;
 }
  
 /*************************** SWITCH CASES ***************************/
