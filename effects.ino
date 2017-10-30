@@ -103,7 +103,15 @@ Vous pouvez le maintenir aussi longtemps que vous le souhaitez.
 Description effet : 
 Les leds brillent comme des étoiles en violet de façon disparate sur le bâton
 → code quentin?
+*/
+case 4: setPixel(LED_TEMOIN, 0, 0, 255);
+    break;
 
+void manteauDombre(void){
+
+}
+
+/*
 Effet 5
 Affichage en led: 000
 Nom du sort : Amitié morts vivants
@@ -111,7 +119,21 @@ Effet du sort :
 En lançant ce sort sur un mort vivant, celui ci devient votre ami, il ne vous attaquera plus mais ne vous obéira pas forcément.
 Description effet : 
 Rayon violet qui part du bas jusqu’en haut et laisse allumé le haut
+*/
+case 5: setPixel(LED_TEMOIN, 0, 0, 255);
+    break;
 
+void amitieMortsVivants(uint8_t wait){
+ for(uint8_t i=NUM_LEDS ; j>0 ; i--){
+        strip.setPixelColor(i, 255, 0, 255);
+        strip.setPixelColor(i+10, 0, 0, 0);
+        strip.show();
+        delay(wait);
+    }
+    delay(wait*10);
+}
+
+/*
 Effet 6
 Affichage en led: 000
 Nom du sort : Désenchantement
