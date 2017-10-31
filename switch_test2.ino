@@ -25,8 +25,8 @@
 #define   PIXEL_PIN          1    // Digital IO pin connected to the NeoPixels.
 
 #define   NUM_LEDS           42
-// baton d'alexis : led temoin : 18 & 19
-#define   LED_TEMOIN         18
+// baton d'alexis : led temoin : 17 & 18
+#define   LED_TEMOIN         17
 
 // Breath param
 //#define   TOTAL_STEPS        60
@@ -131,6 +131,7 @@ void selectLoop(void){
 	}
   }
   oldSelect = newSelect;
+  selectShow(showType);
 }
 
 void startLoop(void){
