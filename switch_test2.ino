@@ -1,6 +1,8 @@
 // Baton de GN
 // #ProjetLuxLignumUnum
 
+// Validation Arduino OK
+
 /*
 *   Test interrupteurs part 2
 *   Test des fonctions select ++, select --
