@@ -98,7 +98,7 @@ void loop() {
   startLoop();
   floorLoop();
   timeCounter++;
-  if(timeCounter==100000){
+  if(timeCounter==50000){
 	timeCounter=0;
 	timeShow();
   }
@@ -207,8 +207,8 @@ void floorShow(void){
 /******** TIME SHOW --> effet simple ********/
 void timeShow(void){
       colorWipe(strip.Color(255, 0, 255), 10);  // Pink
-      delay(100);
-      setAll(0,0,0);
+      delay(200);
+      startShow(showType);
 }	
 
 /*************************** BOUCLE EFFETS DE BASE ***************************/
