@@ -98,7 +98,7 @@ void loop() {
   startLoop();
   floorLoop();
   timeCounter++;
-  if(timeCounter==50000){
+  if(timeCounter==10000){
 	timeCounter=0;
 	timeShow();
   }
