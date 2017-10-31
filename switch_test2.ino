@@ -200,6 +200,7 @@ void startShow(int i) {
 /******** FLOOR SHOW --> effet simple ********/
 void floorShow(void){
       colorWipe(strip.Color(255, 255, 255), 10);  // White
+	setAll(0,0,0);
 }
 	
 /******** TIME SHOW --> effet simple ********/
