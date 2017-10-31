@@ -143,6 +143,7 @@ void startLoop(void){
           startShow(showType);
     }
     oldStart = newStart;
+  }
 }
   
 void floorLoop(void){
