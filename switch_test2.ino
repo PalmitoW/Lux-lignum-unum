@@ -169,12 +169,16 @@ void floorLoop(void){
 void selectShow(int i){
   switch(i){
     case 0: setPixel(LED_TEMOIN, 0, 0, 0);
+	  setPixel(LED_TEMOIN+1, 0, 0, 0);  
     break;
     case 1: setPixel(LED_TEMOIN, 255, 0, 0);
+	  setPixel(LED_TEMOIN+1, 255, 0, 0);
     break;
     case 2: setPixel(LED_TEMOIN, 0, 255, 0);
+	  setPixel(LED_TEMOIN+1, 0, 255, 0);
     break;
     case 3: setPixel(LED_TEMOIN, 0, 0, 255);
+	  setPixel(LED_TEMOIN+1, 0, 0, 255);
     break;
   }
 }
