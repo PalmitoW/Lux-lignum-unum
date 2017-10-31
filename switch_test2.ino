@@ -29,17 +29,17 @@
 #define   LED_TEMOIN         18
 
 // Breath param
-#define   TOTAL_STEPS        60
-#define   MAX_BRI            35
-#define   DELAY              1
-#define   WHEEL_COLOR        170
-#define   WHEEL_RANGE        120
-#define   PROP_PIX_ON        4 
-#define   PROP_PIX_TOT       30
-#define   RANDPWR            1
+//#define   TOTAL_STEPS        60
+//#define   MAX_BRI            35
+//#define   DELAY              1
+//#define   WHEEL_COLOR        170
+//#define   WHEEL_RANGE        120
+//#define   PROP_PIX_ON        4 
+//#define   PROP_PIX_TOT       30
+//#define   RANDPWR            1
 #define   MAXCASE            3
 
-int ledFadeTime = 5;
+//int ledFadeTime = 5;
 
 // Parameter 1 = number of pixels in strip,  neopixel stick has 8
 // Parameter 2 = pin number (most are valid)
