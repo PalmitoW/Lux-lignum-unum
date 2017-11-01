@@ -56,7 +56,7 @@ bool oldSelect = LOW;
 bool oldStart = LOW;
 bool oldFloor = LOW;
 int showType = 0;
-int timeCounter =0;
+//int timeCounter =0;
 
 /*************************** BOUCLE SETUP ***************************/
 
@@ -97,11 +97,12 @@ void loop() {
   selectLoop();
   startLoop();
   floorLoop();
-  timeCounter++;
+/*  timeCounter++;
   if(timeCounter==10000){
 	timeCounter=0;
 	timeShow();
   }
+*/
 }
 /*************************** BUTTON LOOP ***************************/
 void selectLoop(void){
@@ -205,12 +206,13 @@ void floorShow(void){
 }
 	
 /******** TIME SHOW --> effet simple ********/
+/*
 void timeShow(void){
       colorWipe(strip.Color(255, 0, 255), 10);  // Pink
       delay(200);
       startShow(showType);
 }	
-
+*/
 /*************************** BOUCLE EFFETS DE BASE ***************************/
 
 // Fill the dots one after the other with a color
