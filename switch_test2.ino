@@ -109,12 +109,12 @@ void selectLoop(void){
     bool newSelect = digitalRead(BUTTON_PIN_SELECT);
     bool newFloor = digitalRead(BUTTON_PIN_FLOOR);
    // Check if state changed from high to low (button press).
-  if (newSelect == LOW && oldSelect == HIGH) {
+  if (newSelect == HIGH && oldSelect == LOW) {
     // Short delay to debounce button.
     delay(20);
     // Check if button is still low after debounce.
     newSelect = digitalRead(BUTTON_PIN_SELECT);
-    if (newSelect == LOW) {
+    if (newSelect == HIGH) {
       newFloor = digitalRead(BUTTON_PIN_FLOOR);
       if (newFloor == LOW){
         showType++;
@@ -153,12 +153,12 @@ void startLoop(void){
 void floorLoop(void){
   bool newFloor = digitalRead(BUTTON_PIN_FLOOR);
   // Check if state changed from high to low (button press).
-  if (newFloor == LOW && oldFloor == HIGH) {
+  if (newFloor == HIGH && oldFloor == LOW) {
     // Short delay to debounce button.
     delay(20);
     // Check if button is still low after debounce.
     newFloor = digitalRead(BUTTON_PIN_FLOOR);
-    if (newFloor == LOW) {
+    if (newFloor == HIGH) {
       floorShow();
     }
   }
