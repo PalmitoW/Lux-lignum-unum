@@ -86,9 +86,9 @@ void startShow(int i) {
   switch(i){
     case 0: setAll(0,0,0);
             break;
-    case 1: dagueDombre(10, 20, 10);
+    case 1: dagueDombre(10, 20, 5);
             break;
-    case 2: visageCauchemar(50);
+    case 2: visageCauchemar(100);
             break;
     case 3: tenebre(50);
             break;
