@@ -202,6 +202,7 @@ void startShow(int i) {
 /******** FLOOR SHOW --> effet simple ********/
 void floorShow(void){
       colorWipe(strip.Color(255, 255, 255), 10);  // White
+	delay(20);
 	setAll(0,0,0);
 }
 	
