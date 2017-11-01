@@ -84,9 +84,9 @@ void selectShow(int i){
 
 void startShow(int i) {
   switch(i){
-    case 0: colorWipe(strip.Color(0, 0, 0), 50);    // Black/off
+    case 0: setAll(0,0,0);
             break;
-    case 1: dagueDombre(10,20,50);
+    case 1: dagueDombre(10, 20, 50);
             break;
     case 2: visageCauchemar(50);
             break;
@@ -100,7 +100,7 @@ void startShow(int i) {
             break;
     case 7: desorientation(20);
             break;
-    case 8: laMortPeutAttendre();
+    case 8: laMortPeutAttendre(10);
             break;
   }
 }
@@ -254,12 +254,13 @@ for(uint8_t k=0; k<5 ; k++){
         delay(wait);
     }
     for(uint8_t j=255; j>0 ; j--){
-        for(uint8_t i=led1; i<led2; i++) {
+        for(uint8_t i=0; i<10; i++) {
             strip.setPixelColor(i, j, 0, j);
             strip.show();
         }
         delay(wait);
     }
+  }
 }
 
 /*
@@ -302,7 +303,7 @@ lueure blanche en haut du bâton?
 
 
 void laMortPeutAttendre(uint8_t wait){
-
+    delay(wait);
 }
 /*************************** BOUCLE EFFETS DE BASE ***************************/
 
