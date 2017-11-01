@@ -154,16 +154,13 @@ void visageCauchemar(uint8_t wait){
         delay(wait);
     }
     for(uint8_t i=0 ; i<20 ; i++){                                 //strob ON
-        for(uint8_t j=0 ; j<10 ; i=i+2){
-            strip.setPixelColor(i, 255, 0, 255);
-            strip.setPixelColor(i-1, 255, 0, 0);
+        for(uint8_t j=0 ; j<10 ; j=j+2){
+            strip.setPixelColor(j, 255, 0, 255);
+            strip.setPixelColor(j-1, 255, 0, 0);
             strip.show();
         }
         delay(wait);
-        for(uint8_t j=0 ; j<10 ; i++){                             //strobe OFF
-            strip.setPixelColor(i, 0, 0, 0);
-            strip.show();
-        }
+        setAll(0,0,0);                                              //strob OFF
         delay(wait);
     }
 }
@@ -276,16 +273,13 @@ Stroboscope violet et blanc haut du bâton
 
 void desorientation(uint8_t wait){
     for(uint8_t i=0 ; i<20 ; i++){                                 //strob ON
-        for(uint8_t j=0 ; j<10 ; i=i+2){
+        for(uint8_t j=0 ; j<10 ; j=j+2){
             strip.setPixelColor(i, 255, 0, 255);
             strip.setPixelColor(i-1, 255, 255, 255);
             strip.show();
         }
         delay(wait);
-        for(uint8_t j=0 ; j<10 ; i++){                             //strobe OFF
-            strip.setPixelColor(i, 0, 0, 0);
-            strip.show();
-        }
+        setAll(0,0,0);                                          //strobe OFF
         delay(wait);
     }
 }
