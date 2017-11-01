@@ -24,7 +24,7 @@
 //   NEO_KHZ800  800 KHz bitstream (e.g. High Density LED strip), correct for neopixel stick
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(NUM_LEDS, PIXEL_PIN, NEO_GRB + NEO_KHZ800);
 
-bool oldState = HIGH;
+bool oldState = LOW;
 int showType = 0;
 
 void setup() {
@@ -38,14 +38,14 @@ void loop() {
   bool newState = digitalRead(BUTTON_PIN);
 
   // Check if state changed from high to low (button press).
-  if (newState == LOW && oldState == HIGH) {
+  if (newState == HIGH && oldState == LOW) {
     // Short delay to debounce button.
     delay(20);
     // Check if button is still low after debounce.
     newState = digitalRead(BUTTON_PIN);
-    if (newState == LOW) {
+    if (newState == HIGH) {
       showType++;
-      if (showType > 9)
+      if (showType > 8)
         showType=0;
       startShow(showType);
     }
@@ -86,7 +86,7 @@ void startShow(int i) {
   switch(i){
     case 0: setAll(0,0,0);
             break;
-    case 1: dagueDombre(10, 20, 50);
+    case 1: dagueDombre(10, 20, 10);
             break;
     case 2: visageCauchemar(50);
             break;
@@ -118,16 +118,16 @@ fonction d’allumage de leds défini, augmenter l'intensite rapidement et dimin
 void dagueDombre(uint8_t led1, uint8_t led2, uint8_t wait){
     for(uint8_t j=0; j<255 ; j++){
         for(uint8_t i=led1; i<led2; i++) {
-        strip.setPixelColor(i, j, 0, j);
-        strip.show();
+          strip.setPixelColor(i, j, 0, j);
         }
+    strip.show();
     delay(wait);
     }
     for(uint8_t j=255; j>0 ; j--){
         for(uint8_t i=led1; i<led2; i++) {
         strip.setPixelColor(i, j, 0, j);
-        strip.show();
         }
+    strip.show();
     delay(wait*4);
     }
 }
