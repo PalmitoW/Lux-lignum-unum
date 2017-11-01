@@ -138,16 +138,16 @@ void selectLoop(void){
 void startLoop(void){
   bool newStart = digitalRead(BUTTON_PIN_START);
   // Check if state changed from high to low (button press).
-  if (newStart == LOW && oldStart == HIGH) {
+  if (newStart == HIGH && oldStart == LOW) {
     // Short delay to debounce button.
     delay(20);
     // Check if button is still low after debounce.
     newStart = digitalRead(BUTTON_PIN_START);
-    if (newStart == LOW) {
+    if (newStart == HIGH) {
           startShow(showType);
     }
-    oldStart = newStart;
   }
+  oldStart = newStart;
 }
   
 void floorLoop(void){
