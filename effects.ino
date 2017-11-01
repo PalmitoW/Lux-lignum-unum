@@ -1,3 +1,53 @@
+/*************************** SWITCH CASES ***************************/
+
+/******** SELECT SHOW --> Affiche la led temoin ********/
+void selectShow(int i){
+  switch(i){
+    case 0: setPixel(LED_TEMOIN, 0, 0, 0);
+    break;
+    case 1: setPixel(LED_TEMOIN, 100, 0, 100);
+    break;
+    case 2: setPixel(LED_TEMOIN, 255, 0, 125);
+    break;
+    case 3: setPixel(LED_TEMOIN, 255, 0, 125);
+    break;
+    case 4: setPixel(LED_TEMOIN, 0, 0, 255);
+    break;
+    case 5: setPixel(LED_TEMOIN, 0, 255, 0);
+    break;
+    case 6: setPixel(LED_TEMOIN, 0, 0, 255);
+    break;
+    case 7: setPixel(LED_TEMOIN, 255, 255, 255);
+    break;
+    case 8: setPixel(LED_TEMOIN, 255, 255, 255);
+    break;
+  }
+}
+
+/******** START SHOW --> effectue le programme ********/
+
+void startShow(int i) {
+  switch(i){
+    case 0: colorWipe(strip.Color(0, 0, 0), 50);    // Black/off
+            break;
+    case 1: dagueDombre(10,20,50);
+            break;
+    case 2: visageCauchemar(50);
+            break;
+    case 3: tenebre(50);
+            break;
+    case 4: manteauDombre();
+            break; 
+    case 5: amitieMortsVivants(50);
+            break;
+    case 6: desenchantement(50);
+            break;
+    case 7: desorientation(20);
+            break;
+    case 8: laMortPeutAttendre();
+            break;
+  }
+}
 /*
 Effet 1
 Affichage en led: 000
@@ -9,9 +59,6 @@ Description effet :
 Zone de violet tourne autour des interrupteurs
 fonction d’allumage de leds défini, augmenter l'intensite rapidement et diminution doucement
 */
-case 1: setPixel(LED_TEMOIN, 100, 0, 100);
-    break;
-
 void dagueDombre(uint8_t led1, uint8_t led2, uint8_t wait){
     for(uint8_t j=0; j<255 ; j++){
         for(uint8_t i=led1; i<led2; i++) {
@@ -39,8 +86,7 @@ Description effet :
 Petits points violets et rouge qui montent doucement puis tête du bâton qui clignote en rouge et violet
 */
 
-case 2: setPixel(LED_TEMOIN, 255, 0, 125);
-    break;
+
 
 void visageCauchemar(uint8_t wait){
     for(uint8_t i=NUM_LEDS ; j>4 ; i=i-2){
@@ -77,8 +123,7 @@ Description effet :
 Allume en violet le pied du bâton
 effet très simple
 */
-case 3: setPixel(LED_TEMOIN, 255, 0, 125);
-    break;
+
 
 void tenebre(uint8_t wait){
     for(uint8_t i=NUM_LEDS ; i>30 ; i--){
@@ -104,8 +149,7 @@ Description effet :
 Les leds brillent comme des étoiles en violet de façon disparate sur le bâton
 → code quentin?
 */
-case 4: setPixel(LED_TEMOIN, 0, 0, 255);
-    break;
+
 
 void manteauDombre(void){
 
@@ -120,8 +164,7 @@ En lançant ce sort sur un mort vivant, celui ci devient votre ami, il ne vous a
 Description effet : 
 Rayon violet qui part du bas jusqu’en haut et laisse allumé le haut
 */
-case 5: setPixel(LED_TEMOIN, 0, 255, 0);
-    break;
+
 
 void amitieMortsVivants(uint8_t wait){
  for(uint8_t i=NUM_LEDS ; j>0 ; i--){
@@ -143,8 +186,7 @@ Cela détruit la magie de l'objet.
 Description effet : 
 Faire clignoter très doucement le haut du bâton, s’allume lentement, s’éteint lentement *5
 */
-case 6: setPixel(LED_TEMOIN, 0, 0, 255);
-    break;
+
 
 void desenchantement(uint8_t wait){
 for(uint8_t k=0; k<5 ; k++){
@@ -173,8 +215,7 @@ vous désorientez votre cible qui est alors prise de vertige et doit poser un ge
 Description effet : 
 Stroboscope violet et blanc haut du bâton
 */
-case 7: setPixel(LED_TEMOIN, 255, 255, 255);
-    break;
+
 
 void desorientation(uint8_t wait){
     for(uint8_t i=0 ; i<20 ; i++){                                 //strob ON
@@ -202,8 +243,7 @@ Description effet :
 lueure blanche en haut du bâton?
 
 */
-case 8: setPixel(LED_TEMOIN, 255, 255, 255);
-    break;
+
 
 void laMortPeutAttendre(uint8_t wait){
 
