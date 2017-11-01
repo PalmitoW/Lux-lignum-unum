@@ -145,7 +145,7 @@ Petits points violets et rouge qui montent doucement puis tête du bâton qui cl
 
 
 void visageCauchemar(uint8_t wait){
-    for(uint8_t i=NUM_LEDS ; j>4 ; i=i-2){
+    for(uint8_t i=NUM_LEDS ; i>4 ; i=i-2){
         strip.setPixelColor(i, 255, 0, 255);
         strip.setPixelColor(i-1, 255, 0, 0);
         strip.setPixelColor(i+1, 0, 0, 0);
@@ -223,7 +223,7 @@ Rayon violet qui part du bas jusqu’en haut et laisse allumé le haut
 
 
 void amitieMortsVivants(uint8_t wait){
- for(uint8_t i=NUM_LEDS ; j>0 ; i--){
+ for(uint8_t i=NUM_LEDS ; i>0 ; i--){
         strip.setPixelColor(i, 255, 0, 255);
         strip.setPixelColor(i+10, 0, 0, 0);
         strip.show();
