@@ -114,8 +114,9 @@ void selectLoop(void){
     delay(20);
     // Check if button is still high after debounce.
     newSelect = digitalRead(BUTTON_PIN_SELECT);
+    newFloor = digitalRead(BUTTON_PIN_FLOOR);
     if (newSelect == HIGH) {
-      newFloor = digitalRead(BUTTON_PIN_FLOOR);
+      
       if (newFloor == LOW){
         showType++;
         if (showType > MAXCASE)
@@ -132,6 +133,7 @@ void selectLoop(void){
 	}
   }
   oldSelect = newSelect;
+  oldFloor = newFloor;
   selectShow(showType);
 }
 
