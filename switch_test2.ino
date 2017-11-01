@@ -120,14 +120,14 @@ void selectLoop(void){
         showType++;
         if (showType > MAXCASE)
           showType=0;
-        selectShow(showType);
+//        selectShow(showType);
       }else{
         if(showType == 0){
           showType=MAXCASE;
         }else{
           showType--;
         }
-        selectShow(showType);
+ //       selectShow(showType);
       }
 	}
   }
