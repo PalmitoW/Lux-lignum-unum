@@ -62,20 +62,28 @@ void selectShow(int i){
     case 0: setPixel(LED_TEMOIN, 0, 0, 0);
     break;
     case 1: setPixel(LED_TEMOIN, 100, 0, 100);
+            setPixel(LED_TEMOIN+1, 100, 0, 100);
     break;
     case 2: setPixel(LED_TEMOIN, 255, 0, 125);
+            setPixel(LED_TEMOIN+1, 100, 0, 100);
     break;
     case 3: setPixel(LED_TEMOIN, 255, 0, 125);
+            setPixel(LED_TEMOIN+1, 100, 0, 100);
     break;
     case 4: setPixel(LED_TEMOIN, 0, 0, 255);
+            setPixel(LED_TEMOIN+1, 100, 0, 100);
     break;
     case 5: setPixel(LED_TEMOIN, 0, 255, 0);
+            setPixel(LED_TEMOIN+1, 100, 0, 100);
     break;
     case 6: setPixel(LED_TEMOIN, 0, 0, 255);
+            setPixel(LED_TEMOIN+1, 100, 0, 100);
     break;
     case 7: setPixel(LED_TEMOIN, 255, 255, 255);
+            setPixel(LED_TEMOIN+1, 100, 0, 100);
     break;
     case 8: setPixel(LED_TEMOIN, 255, 255, 255);
+            setPixel(LED_TEMOIN+1, 100, 0, 100);
     break;
   }
   strip.show();
