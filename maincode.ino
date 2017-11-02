@@ -177,9 +177,9 @@ void startShow(uint8_t i) {
   switch(i){
 case 0: setAll(0,0,0);
             break;
-    case 1: dagueDombre(10, 20, 5); // zone violette proche main
+    case 1: dagueDombre(10, 20, 4); // zone violette proche main
             break;
-    case 2: visageCauchemar(100); // strob violet et blanc
+    case 2: visageCauchemar(50); // strob violet et blanc
             break;
     case 3: tenebre(50); // bas du baton en violet
             break;
@@ -189,7 +189,7 @@ case 0: setAll(0,0,0);
             break;
     case 6: desenchantement(4); // s'allume et s'éteint lentement wait4 --> allume 1 sec
             break;
-    case 7: desorientation(20); // strob violet et blanc haut baton
+    case 7: desorientation(80); // strob violet et blanc haut baton
             break;
     case 8: laMortPeutAttendre(10); // lueure blanche haut baton à coder
             break;
@@ -269,14 +269,12 @@ void dagueDombre(uint8_t led1, uint8_t led2, uint8_t wait){
         for(uint8_t i=led1; i<led2; i++) {
           strip.setPixelColor(i, j, 0, j);
         }
-    strip.show();
     delay(wait);
     }
     for(uint8_t j=255; j>0 ; j--){
         for(uint8_t i=led1; i<led2; i++) {
         strip.setPixelColor(i, j, 0, j);
         }
-    strip.show();
     delay(wait*4);
     }
 }
@@ -328,15 +326,15 @@ effet très simple
 
 
 void tenebre(uint8_t wait){
-    for(uint8_t i=NUM_LEDS ; i>30 ; i--){
+    for(uint8_t i=NUM_LEDS ; i<30 ; i--){
         strip.setPixelColor(i, 255, 0, 255);
+	delay(wait);
     }
-    strip.show();
-    delay(wait);
-    for(uint8_t i=NUM_LEDS ; i>30 ; i--){
+    delay(wait*10);
+    for(uint8_t i=29 ; i>NUM_LEDS ; i++){
         strip.setPixelColor(i, 0, 0, 0);
+	delay(wait);
     }
-    strip.show();
 }
 
 /*
@@ -374,10 +372,10 @@ void amitieMortsVivants(uint8_t wait){
  for(uint8_t i=NUM_LEDS ; i>0 ; i--){
         strip.setPixelColor(i, 0, 255, 0);
         strip.setPixelColor(i+10, 0, 0, 0);
-        strip.show();
         delay(wait);
     }
     delay(wait*10);
+    setAll(0,0,0);
 }
 
 /*
@@ -423,9 +421,9 @@ Stroboscope violet et blanc haut du bâton
 
 
 void desorientation(uint8_t wait){
-    for(uint8_t i=0 ; i<20 ; i++){                                 //strob ON
+    for(uint8_t i=0 ; i<50 ; i++){                                 //strob ON
         for(uint8_t j=0 ; j<10 ; j=j+2){
-            strip.setPixelColor(i, 255, 0, 255);
+            strip.setPixelColor(i, 175, 0, 255);
             strip.setPixelColor(i-1, 255, 255, 255);
             strip.show();
         }
@@ -448,7 +446,16 @@ lueure blanche en haut du bâton?
 
 
 void laMortPeutAttendre(uint8_t wait){
-    delay(wait);
+  for(uint8_t i=0; i<5; i++){
+    for(uint8_t j=0; j<255 ; j++){
+        setAll(j, j, j);
+	delay(wait);
+    }
+    for(uint8_t j=255; j>0 ; j--){
+        setAll(j, j, j);
+	delay(wait);
+    }
+  }
 }
 
 /**************************** FONCTION PARAMETRES **********************/
