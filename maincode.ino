@@ -1,7 +1,7 @@
 // Baton de GN
 // #ProjetLuxLignumUnum
 // ATtiny85 on-board, 8K of flash, 512 byte of SRAM, 512 bytes of EEPROM
- // programme utilise 8024 byte
+ // programme utilise 8036 byte
 /*
 *   
 *   
@@ -71,12 +71,14 @@ void setup() {
 
 
 void loop() { 
-  selectLoop();
-  startLoop();
-  floorLoop();
+  selectLoop(); // lit l'interrupteur select ; sélectionne un programme ; lance selectshow qui allume les leds témoins
+  startLoop();  // lit l'interrupteur start ; lance start show qui execute les effets
+  floorLoop(); 	// lit l'interrupteur floor ; lance floorshow petits effets floor
 }
+
+
 /*************************** BUTTON LOOP ***************************/
-void selectLoop(void){
+void selectLoop(void){ // lit l'interrupteur select ; sélectionne un programme ; lance selectshow qui allume les leds témoins
     bool newSelect = digitalRead(BUTTON_PIN_SELECT);
     bool newFloor = digitalRead(BUTTON_PIN_FLOOR);
    // Check if state changed from low to high (button press).
@@ -106,7 +108,7 @@ void selectLoop(void){
   selectShow(showType);
 }
 
-void startLoop(void){
+void startLoop(void){ // lit l'interrupteur start ; lance start show qui execute les effets
   bool newStart = digitalRead(BUTTON_PIN_START);
   // Check if state changed from low to high (button press).
   if (newStart == HIGH && oldStart == LOW) {
@@ -121,7 +123,7 @@ void startLoop(void){
   oldStart = newStart;
 }
   
-void floorLoop(void){
+void floorLoop(void){ // lit l'interrupteur floor ; lance floorshow petits effets floor
   bool newFloor = digitalRead(BUTTON_PIN_FLOOR);
   // Check if state changed from low to high (button press).
   if (newFloor == HIGH && oldFloor == LOW) {
@@ -196,27 +198,27 @@ case 0: setAll(0,0,0);
   }
 }
 /******** FLOOR SHOW --> effets simples ********/
-void floorShow(void){
+void floorShow(void){ // appel la fonction trait de couleurs sous différentes couleurs et à différents endroits
     switch(floorType){
-	    case 0: traitCouleur(strip.Color(255, 255, 255), 42, 28);
+	    case 0: traitCouleur(strip.Color(255, 255, 255), 42, 28); // blanche en bas
 	    break;
-	    case 1: traitCouleur(strip.Color(255, 0, 0), 42, 28);
+	    case 1: traitCouleur(strip.Color(255, 0, 0), 42, 28); // rouge en bas
 	    break;
-	    case 2: traitCouleur(strip.Color(255, 0, 0), 28, 14);
+	    case 2: traitCouleur(strip.Color(255, 0, 0), 28, 14); // rouge au milieu
 	    break;
-	    case 3: traitCouleur(strip.Color(255, 0, 0), 14, 0);
+	    case 3: traitCouleur(strip.Color(255, 0, 0), 14, 0); // rouge en haut
 	    break;
-	    case 4: traitCouleur(strip.Color(0, 255, 0), 42, 28); 
+	    case 4: traitCouleur(strip.Color(0, 255, 0), 42, 28); // vert en bas
 	    break;
-	    case 5: traitCouleur(strip.Color(0, 255, 0), 28, 14); 
+	    case 5: traitCouleur(strip.Color(0, 255, 0), 28, 14);  // vert au milieu
 	    break;
-	    case 6: traitCouleur(strip.Color(0, 255, 0), 14, 0); 
+	    case 6: traitCouleur(strip.Color(0, 255, 0), 14, 0); // vert en haut
 	    break;
-	    case 7: traitCouleur(strip.Color(0, 0, 255), 42, 28); 
+	    case 7: traitCouleur(strip.Color(0, 0, 255), 42, 28); // bleu en bas
 	    break;
-	    case 8: traitCouleur(strip.Color(0, 0, 255), 28, 14); 
+	    case 8: traitCouleur(strip.Color(0, 0, 255), 28, 14); // bleu au milieu
 	    break;
-	    case 9: traitCouleur(strip.Color(0, 0, 255), 14, 0); 
+	    case 9: traitCouleur(strip.Color(0, 0, 255), 14, 0); // bleu en haut
 	    break; 
     }
     floorType ++;
@@ -228,6 +230,8 @@ void floorShow(void){
 /*************************** BOUCLE EFFETS DE BASE ***************************/
 
 // Fill the dots one after the other with a color
+
+/***************** fonction de base non utilisée******************
 void colorWipe(uint32_t c, uint8_t wait) {
   for(uint8_t i=0; i<strip.numPixels(); i++) {
     strip.setPixelColor(i, c);
@@ -238,8 +242,9 @@ void colorWipe(uint32_t c, uint8_t wait) {
     }
   }
 }
+*/
 
-// effet trait de couleur pour floorshow
+// effet trait de couleur pour floorshow --> allume successivement des leds entre istart et istop puis les éteint
 
 void traitCouleur(uint32_t c, uint8_t istart, uint8_t istop){
 	for (uint8_t i=istart; i<istop; i--){
@@ -268,12 +273,14 @@ void dagueDombre(uint8_t led1, uint8_t led2, uint8_t wait){
     for(uint8_t j=0; j<255 ; j++){
         for(uint8_t i=led1; i<led2; i++) {
           strip.setPixelColor(i, j, 0, j);
+	  strip.show();
         }
     delay(wait);
     }
     for(uint8_t j=255; j>0 ; j--){
         for(uint8_t i=led1; i<led2; i++) {
         strip.setPixelColor(i, j, 0, j);
+	strip.show();
         }
     delay(wait*4);
     }
@@ -328,11 +335,13 @@ effet très simple
 void tenebre(uint8_t wait){
     for(uint8_t i=NUM_LEDS ; i<30 ; i--){
         strip.setPixelColor(i, 255, 0, 255);
+	strip.show();
 	delay(wait);
     }
     delay(wait*10);
     for(uint8_t i=29 ; i>NUM_LEDS ; i++){
         strip.setPixelColor(i, 0, 0, 0);
+	strip.show();
 	delay(wait);
     }
 }
@@ -372,6 +381,7 @@ void amitieMortsVivants(uint8_t wait){
  for(uint8_t i=NUM_LEDS ; i>0 ; i--){
         strip.setPixelColor(i, 0, 255, 0);
         strip.setPixelColor(i+10, 0, 0, 0);
+	strip.show();
         delay(wait);
     }
     delay(wait*10);
