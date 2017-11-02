@@ -61,28 +61,28 @@ void selectShow(int i){
   switch(i){
     case 0: setPixel(LED_TEMOIN, 0, 0, 0);
     break;
-    case 1: setPixel(LED_TEMOIN, 100, 0, 100);
-            setPixel(LED_TEMOIN+1, 100, 0, 100);
+    case 1: setPixel(LED_TEMOIN, 175, 0, 255); // dague d'ombre
+            setPixel(LED_TEMOIN+1, 175, 0, 255);
     break;
-    case 2: setPixel(LED_TEMOIN, 255, 0, 125);
-            setPixel(LED_TEMOIN+1, 100, 0, 100);
+    case 2: setPixel(LED_TEMOIN, 175, 0, 255); // visage cauchemar
+            setPixel(LED_TEMOIN+1, 255, 0, 0);
     break;
-    case 3: setPixel(LED_TEMOIN, 255, 0, 125);
-            setPixel(LED_TEMOIN+1, 100, 0, 100);
+    case 3: setPixel(LED_TEMOIN, 0, 0, 0); // ténèbre
+            setPixel(LED_TEMOIN+1, 175, 0, 255);
     break;
-    case 4: setPixel(LED_TEMOIN, 0, 0, 255);
-            setPixel(LED_TEMOIN+1, 100, 0, 100);
+    case 4: setPixel(LED_TEMOIN, 0, 0, 125); // manteau d'ombre
+            setPixel(LED_TEMOIN+1, 100, 0, 125);
     break;
-    case 5: setPixel(LED_TEMOIN, 0, 255, 0);
-            setPixel(LED_TEMOIN+1, 100, 0, 100);
+    case 5: setPixel(LED_TEMOIN, 0, 255, 0); // amitié mort vivant
+            setPixel(LED_TEMOIN+1, 0, 0, 0);
     break;
-    case 6: setPixel(LED_TEMOIN, 0, 0, 255);
-            setPixel(LED_TEMOIN+1, 100, 0, 100);
+    case 6: setPixel(LED_TEMOIN, 175, 0, 255); // désenchantement
+            setPixel(LED_TEMOIN+1, 0, 0, 0);
     break;
-    case 7: setPixel(LED_TEMOIN, 255, 255, 255);
-            setPixel(LED_TEMOIN+1, 100, 0, 100);
+    case 7: setPixel(LED_TEMOIN, 255, 255, 255); // désorientation
+            setPixel(LED_TEMOIN+1, 175, 0, 255);
     break;
-    case 8: setPixel(LED_TEMOIN, 255, 255, 255);
+    case 8: setPixel(LED_TEMOIN, 255, 255, 255); // la mort peut attendre
             setPixel(LED_TEMOIN+1, 100, 0, 100);
     break;
   }
@@ -95,21 +95,21 @@ void startShow(int i) {
   switch(i){
     case 0: setAll(0,0,0);
             break;
-    case 1: dagueDombre(10, 20, 5);
+    case 1: dagueDombre(10, 20, 5); // zone violette proche main
             break;
-    case 2: visageCauchemar(100);
+    case 2: visageCauchemar(100); // strob violet et blanc
             break;
-    case 3: tenebre(50);
+    case 3: tenebre(50); // bas du baton en violet
             break;
-    case 4: manteauDombre();
+    case 4: manteauDombre(); // brille comme des étoiles? quentin?
             break; 
-    case 5: amitieMortsVivants(50);
+    case 5: amitieMortsVivants(50); // trait de lumière verte
             break;
-    case 6: desenchantement(50);
+    case 6: desenchantement(4); // s'allume et s'éteint lentement wait4 --> allume 1 sec
             break;
-    case 7: desorientation(20);
+    case 7: desorientation(20); // strob violet et blanc haut baton
             break;
-    case 8: laMortPeutAttendre(10);
+    case 8: laMortPeutAttendre(10); // lueure blanche haut baton à coder
             break;
   }
 }
@@ -224,13 +224,13 @@ Nom du sort : Amitié morts vivants
 Effet du sort :
 En lançant ce sort sur un mort vivant, celui ci devient votre ami, il ne vous attaquera plus mais ne vous obéira pas forcément.
 Description effet : 
-Rayon violet qui part du bas jusqu’en haut et laisse allumé le haut
+Rayon vert qui part du bas jusqu’en haut et laisse allumé le haut
 */
 
 
 void amitieMortsVivants(uint8_t wait){
  for(uint8_t i=NUM_LEDS ; i>0 ; i--){
-        strip.setPixelColor(i, 255, 0, 255);
+        strip.setPixelColor(i, 0, 255, 0);
         strip.setPixelColor(i+10, 0, 0, 0);
         strip.show();
         delay(wait);
