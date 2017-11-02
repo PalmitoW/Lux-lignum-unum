@@ -28,15 +28,6 @@
 // baton d'alexis : led temoin : 17 & 18
 #define   LED_TEMOIN         17
 
-// Breath param
-//#define   TOTAL_STEPS        60
-//#define   MAX_BRI            35
-//#define   DELAY              1
-//#define   WHEEL_COLOR        170
-//#define   WHEEL_RANGE        120
-//#define   PROP_PIX_ON        4 
-//#define   PROP_PIX_TOT       30
-//#define   RANDPWR            1
 #define   MAXCASE            3
 
 //int ledFadeTime = 5;
@@ -60,18 +51,7 @@ int showType = 0;
 
 /*************************** BOUCLE SETUP ***************************/
 
-/** A FAIRE, A REFLECHIR**/
-
-
-void setup() {
-  /*** ça sert à quelque chose ça? **/
-  // This is for Trinket 5V 16MHz, you can remove these three lines if you are not using a Trinket
-  #if defined (__AVR_ATtiny85__)
-    if (F_CPU == 16000000) clock_prescale_set(clock_div_1);
-  #endif
-  // End of trinket special code
-  
-  
+void setup() { 
   pinMode(BUTTON_PIN_SELECT, INPUT_PULLUP);
   pinMode(BUTTON_PIN_START, INPUT_PULLUP);
   pinMode(BUTTON_PIN_FLOOR, INPUT_PULLUP);
@@ -225,6 +205,9 @@ void colorWipe(uint32_t c, uint8_t wait) {
     strip.setPixelColor(i, c);
     strip.show();
     delay(wait);
+    if(startBreak()==1){
+	break;
+    }
   }
 }
 /**************************** FONCTION PARAMETRES **********************/
