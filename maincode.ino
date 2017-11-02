@@ -39,7 +39,6 @@
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(NUM_LEDS, PIXEL_PIN, NEO_GRB + NEO_KHZ800);
 
 /******************** INTRODUCTION DES VARIABLES ********************/
-
 bool oldSelect = LOW;
 bool oldStart = LOW;
 bool oldFloor = LOW;
@@ -47,7 +46,6 @@ uint8_t showType = 0;
 uint8_t floorType = 0;
 
 /*************************** BOUCLE SETUP ***************************/
-
 void setup() { 
   pinMode(BUTTON_PIN_SELECT, INPUT_PULLUP);
   pinMode(BUTTON_PIN_START, INPUT_PULLUP);
@@ -58,7 +56,6 @@ void setup() {
 }
 
 /************************ BOUCLE EST BOUCLEE ************************/
-
 /*
 * A FAIRE
 * Objectifs:
@@ -73,7 +70,7 @@ void setup() {
 void loop() { 
   selectLoop(); // lit l'interrupteur select ; sélectionne un programme ; lance selectshow qui allume les leds témoins
   startLoop();  // lit l'interrupteur start ; lance start show qui execute les effets
-  floorLoop(); 	// lit l'interrupteur floor ; lance floorshow petits effets floor
+  floorLoop();   // lit l'interrupteur floor ; lance floorshow petits effets floor
 }
 
 
@@ -90,18 +87,22 @@ void selectLoop(void){ // lit l'interrupteur select ; sélectionne un programme 
     newFloor = digitalRead(BUTTON_PIN_FLOOR);
     if (newSelect == HIGH) {
       
-      if (newFloor == LOW){
+      if (newFloor == LOW)
+      {
         showType++;
+        
         if (showType > MAXCASE)
           showType=0;
-      }else{
-        if(showType == 0){
+      }
+      else
+      {
+        if(showType <= 0){
           showType=MAXCASE;
         }else{
           showType--;
         }
       }
-	}
+    }
   }
   oldSelect = newSelect;
   oldFloor = newFloor;
@@ -132,7 +133,8 @@ void floorLoop(void){ // lit l'interrupteur floor ; lance floorshow petits effet
     // Check if button is still high after debounce.
     newFloor = digitalRead(BUTTON_PIN_FLOOR);
     if (newFloor == HIGH) {
-      floorShow();
+      //floorShow();
+      traitCouleurRandom();
     }
   }
   oldFloor = newFloor;
@@ -174,16 +176,15 @@ void selectShow(uint8_t i){
 }
 
 /******** START SHOW --> effectue le programme ********/
-
 void startShow(uint8_t i) {
   switch(i){
-case 0: setAll(0,0,0);
+    case 0: setAll(0,0,0);
             break;
-    case 1: dagueDombre(10, 20, 4); // zone violette proche main
+    case 1: dagueDombre(15, 20, 4); // zone violette proche main
             break;
     case 2: visageCauchemar(50); // strob violet et blanc
             break;
-    case 3: tenebre(50); // bas du baton en violet
+    case 3: tenebre(4); // bas du baton en violet
             break;
     case 4: manteauDombre(2000); // allume tout en bleu
             break; 
@@ -193,71 +194,67 @@ case 0: setAll(0,0,0);
             break;
     case 7: desorientation(80); // strob violet et blanc haut baton
             break;
-    case 8: laMortPeutAttendre(10); // lueure blanche haut baton à coder
+    case 8: laMortPeutAttendre(5); // lueure blanche haut baton à coder
             break;
   }
 }
 /******** FLOOR SHOW --> effets simples ********/
 void floorShow(void){ // appel la fonction trait de couleurs sous différentes couleurs et à différents endroits
     switch(floorType){
-	    case 0: traitCouleur(strip.Color(255, 255, 255), 42, 28); // blanche en bas
-	    break;
-	    case 1: traitCouleur(strip.Color(255, 0, 0), 42, 28); // rouge en bas
-	    break;
-	    case 2: traitCouleur(strip.Color(255, 0, 0), 28, 14); // rouge au milieu
-	    break;
-	    case 3: traitCouleur(strip.Color(255, 0, 0), 14, 0); // rouge en haut
-	    break;
-	    case 4: traitCouleur(strip.Color(0, 255, 0), 42, 28); // vert en bas
-	    break;
-	    case 5: traitCouleur(strip.Color(0, 255, 0), 28, 14);  // vert au milieu
-	    break;
-	    case 6: traitCouleur(strip.Color(0, 255, 0), 14, 0); // vert en haut
-	    break;
-	    case 7: traitCouleur(strip.Color(0, 0, 255), 42, 28); // bleu en bas
-	    break;
-	    case 8: traitCouleur(strip.Color(0, 0, 255), 28, 14); // bleu au milieu
-	    break;
-	    case 9: traitCouleur(strip.Color(0, 0, 255), 14, 0); // bleu en haut
-	    break; 
+      case 0: traitCouleur(strip.Color(255, 255, 255), 42, 28); // blanche en bas
+      break;
+      case 1: traitCouleur(strip.Color(255, 0, 0), 42, 28); // rouge en bas
+      break;
+      case 2: traitCouleur(strip.Color(255, 0, 0), 28, 14); // rouge au milieu
+      break;
+      case 3: traitCouleur(strip.Color(255, 0, 0), 14, 0); // rouge en haut
+      break;
+      case 4: traitCouleur(strip.Color(0, 255, 0), 42, 28); // vert en bas
+      break;
+      case 5: traitCouleur(strip.Color(0, 255, 0), 28, 14);  // vert au milieu
+      break;
+      case 6: traitCouleur(strip.Color(0, 255, 0), 14, 0); // vert en haut
+      break;
+      case 7: traitCouleur(strip.Color(0, 0, 255), 42, 28); // bleu en bas
+      break;
+      case 8: traitCouleur(strip.Color(0, 0, 255), 28, 14); // bleu au milieu
+      break;
+      case 9: traitCouleur(strip.Color(0, 0, 255), 14, 0); // bleu en haut
+      break; 
     }
-    floorType ++;
+    
+    floorType++;
+    
     if(floorType==10){
-	    floorType=0;
+      floorType=0;
     }
 }
-	
+
 /*************************** BOUCLE EFFETS DE BASE ***************************/
 
-// Fill the dots one after the other with a color
-
-/***************** fonction de base non utilisée******************
-void colorWipe(uint32_t c, uint8_t wait) {
-  for(uint8_t i=0; i<strip.numPixels(); i++) {
+// effet trait de couleur pour floorshow --> allume successivement des leds entre istart et istop puis les éteint
+void traitCouleur(uint32_t c, uint8_t istart, uint8_t istop){
+  for (uint8_t i=istart; i>istop; i--){
     strip.setPixelColor(i, c);
     strip.show();
-    delay(wait);
-    if(startBreak()==1){
-	break;
-    }
+    delay(50);
+  }
+  for (uint8_t i=istart; i>istop; i--){
+    strip.setPixelColor(i, 0);
+    strip.show();
+    delay(50);
   }
 }
-*/
 
-// effet trait de couleur pour floorshow --> allume successivement des leds entre istart et istop puis les éteint
-
-void traitCouleur(uint32_t c, uint8_t istart, uint8_t istop){
-	for (uint8_t i=istart; i<istop; i--){
-		strip.setPixelColor(i, c);
-		strip.show();
-		delay(50);
-	}
-	for (uint8_t i=istart; i<istop; i--){
-		strip.setPixelColor(i, 0);
-		strip.show();
-		delay(50);
-	}
+void traitCouleurRandom(void ){
+  uint8_t istart, istop;
+  
+  istop = random(0, NUM_LEDS);
+  istart = constrain(istop + random(5, 15), 0, NUM_LEDS);
+  
+  traitCouleur(strip.Color(random(0,255), random(0,255), random(0,255)), istart, istop);
 }
+
 /*
 Effet 1
 Affichage en led: 000
@@ -270,20 +267,25 @@ Zone de violet tourne autour des interrupteurs
 fonction d’allumage de leds défini, augmenter l'intensite rapidement et diminution doucement
 */
 void dagueDombre(uint8_t led1, uint8_t led2, uint8_t wait){
-    for(uint8_t j=0; j<255 ; j++){
-        for(uint8_t i=led1; i<led2; i++) {
-          strip.setPixelColor(i, j, 0, j);
-	  strip.show();
-        }
+  for(uint8_t j=0; j<255; j++){
+    for(uint8_t i=led1; i<led2; i++) {
+      strip.setPixelColor(i, j, 0, j);
+    }
+    
+    strip.show();
     delay(wait);
+  }
+  
+  for(uint8_t j=255; j>0; j--){
+    for(uint8_t i=led1; i<led2; i++) {
+      strip.setPixelColor(i, j, 0, j);
     }
-    for(uint8_t j=255; j>0 ; j--){
-        for(uint8_t i=led1; i<led2; i++) {
-        strip.setPixelColor(i, j, 0, j);
-	strip.show();
-        }
-    delay(wait*4);
-    }
+    
+    strip.show();
+    delay(wait);
+  }
+  
+  setAll(0,0,0);
 }
 
 /*
@@ -295,9 +297,6 @@ Lors du lancement de ce sort, désignez -dans un cercle de 3 mètres de rayon au
 Description effet : 
 Petits points violets et rouge qui montent doucement puis tête du bâton qui clignote en rouge et violet
 */
-
-
-
 void visageCauchemar(uint8_t wait){
     for(uint8_t i=NUM_LEDS ; i>4 ; i=i-2){
         strip.setPixelColor(i, 255, 0, 255);
@@ -330,20 +329,23 @@ Description effet :
 Allume en violet le pied du bâton
 effet très simple
 */
-
-
 void tenebre(uint8_t wait){
-    for(uint8_t i=NUM_LEDS ; i<30 ; i--){
-        strip.setPixelColor(i, 255, 0, 255);
-	strip.show();
-	delay(wait);
+  for(uint8_t i=NUM_LEDS ; i>25 ; i--){
+    strip.setPixelColor(i, 255, 0, 255);
+  }
+  
+  strip.show();
+
+  for(uint8_t j=255; j>0; j--){
+    for(uint8_t i=NUM_LEDS; i>25; i--) {
+      strip.setPixelColor(i, j, 0, j);
     }
-    delay(wait*10);
-    for(uint8_t i=29 ; i>NUM_LEDS ; i++){
-        strip.setPixelColor(i, 0, 0, 0);
-	strip.show();
-	delay(wait);
-    }
+    
+    strip.show();
+    delay(wait);
+  }
+
+  setAll(0,0,0);
 }
 
 /*
@@ -358,12 +360,12 @@ Description effet :
 Les leds brillent comme des étoiles en violet de façon disparate sur le bâton
 → code quentin?
 */
-
-
 void manteauDombre(uint8_t wait){
-	setAll(0,0,255);
-	delay(wait);
-	setAll(0,0,0);
+  setAll(0,0,255);
+  
+  delay(wait);
+  
+  setAll(0,0,0);
 }
 
 /*
@@ -375,17 +377,16 @@ En lançant ce sort sur un mort vivant, celui ci devient votre ami, il ne vous a
 Description effet : 
 Rayon vert qui part du bas jusqu’en haut et laisse allumé le haut
 */
-
-
 void amitieMortsVivants(uint8_t wait){
- for(uint8_t i=NUM_LEDS ; i>0 ; i--){
-        strip.setPixelColor(i, 0, 255, 0);
-        strip.setPixelColor(i+10, 0, 0, 0);
-	strip.show();
-        delay(wait);
-    }
-    delay(wait*10);
-    setAll(0,0,0);
+  for(uint8_t i=NUM_LEDS ; i>0 ; i--){
+    strip.setPixelColor(i, 0, 255, 0);
+    strip.setPixelColor(i+10, 0, 0, 0);
+    strip.show();
+    delay(wait);
+  }
+  
+  delay(wait*10);
+  setAll(0,0,0);
 }
 
 /*
@@ -398,23 +399,24 @@ Cela détruit la magie de l'objet.
 Description effet : 
 Faire clignoter très doucement le haut du bâton, s’allume lentement, s’éteint lentement *5
 */
-
-
 void desenchantement(uint8_t wait){
-for(uint8_t k=0; k<5 ; k++){
+  for(uint8_t k=0; k<5 ; k++){
     for(uint8_t j=0; j<255 ; j++){
-        for(uint8_t i=0; i<10; i++) {
-            strip.setPixelColor(i, j, 0, j);
-            strip.show();
-        }
-        delay(wait);
+      for(uint8_t i=0; i<10; i++) {
+        strip.setPixelColor(i, j, 0, j);
+      }
+
+      strip.show();
+      delay(wait);
     }
+    
     for(uint8_t j=255; j>0 ; j--){
-        for(uint8_t i=0; i<10; i++) {
-            strip.setPixelColor(i, j, 0, j);
-            strip.show();
-        }
-        delay(wait);
+      for(uint8_t i=0; i<10; i++) {
+        strip.setPixelColor(i, j, 0, j);
+      }
+      
+      strip.show();
+      delay(wait);
     }
   }
 }
@@ -428,19 +430,18 @@ vous désorientez votre cible qui est alors prise de vertige et doit poser un ge
 Description effet : 
 Stroboscope violet et blanc haut du bâton
 */
-
-
 void desorientation(uint8_t wait){
-    for(uint8_t i=0 ; i<50 ; i++){                                 //strob ON
-        for(uint8_t j=0 ; j<10 ; j=j+2){
-            strip.setPixelColor(i, 175, 0, 255);
-            strip.setPixelColor(i-1, 255, 255, 255);
-            strip.show();
-        }
-        delay(wait);
-        setAll(0,0,0);                                          //strobe OFF
-        delay(wait);
+  for(uint8_t i=0 ; i<50 ; i++){                                 //strob ON
+    for(uint8_t j=0 ; j<10 ; j=j+2){
+      strip.setPixelColor(i, 175, 0, 255);
+      strip.setPixelColor(i-1, 255, 255, 255);
     }
+    
+    strip.show();
+    delay(wait);
+    
+    setAll(0,0,0);                                          //strobe OFF
+  }
 }
     
 /*
@@ -451,20 +452,24 @@ Effet du sort :
 La cible n'agonisera pas la prochaine fois qu'elle tombera, il restera dans le coma à attendre. Le sort reste actif jusqu'à utilisation ou jusqu'au prochain repas. Le magicien peut lancer autant de fois ce sort qu'il le souhaite sur plusieurs personnes à la fois.
 Description effet : 
 lueure blanche en haut du bâton?
-
 */
-
-
 void laMortPeutAttendre(uint8_t wait){
-  for(uint8_t i=0; i<5; i++){
-    for(uint8_t j=0; j<255 ; j++){
-        setAll(j, j, j);
-	delay(wait);
+  for(uint8_t j=0; j<255 ; j++){
+    for(uint8_t i=0; i<15; i++) {
+      strip.setPixelColor(i, j, j, j);
     }
-    for(uint8_t j=255; j>0 ; j--){
-        setAll(j, j, j);
-	delay(wait);
+
+    strip.show();
+    delay(wait);
+  }
+  
+  for(uint8_t j=255; j>0 ; j--){
+    for(uint8_t i=0; i<15; i++) {
+      strip.setPixelColor(i, j, j, j);
     }
+    
+    strip.show();
+    delay(wait);
   }
 }
 
@@ -499,7 +504,7 @@ void setAll(byte red, byte green, byte blue) {
     setPixel(i, red, green, blue); 
   }
   showStrip();
-}	
+} 
 
 bool startBreak(){
   bool newStart = digitalRead(BUTTON_PIN_START);
