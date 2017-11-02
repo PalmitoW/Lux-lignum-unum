@@ -185,6 +185,7 @@ void selectShow(int i){
 	  setPixel(LED_TEMOIN+1, 0, 0, 255);
     break;
   }
+  showStrip();
 }
 
 /******** START SHOW --> effectue le programme ********/
