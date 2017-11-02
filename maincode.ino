@@ -1,7 +1,7 @@
 // Baton de GN
 // #ProjetLuxLignumUnum
 // ATtiny85 on-board, 8K of flash, 512 byte of SRAM, 512 bytes of EEPROM
- // programme utilise 8096 byte
+ // programme utilise 8024 byte
 /*
 *   
 *   
