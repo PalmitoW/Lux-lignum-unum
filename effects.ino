@@ -29,6 +29,7 @@ int showType = 0;
 
 void setup() {
   pinMode(BUTTON_PIN, INPUT_PULLUP);
+  setPixel(LED_TEMOIN, 100, 0, 0); // permet de s'assurer de l'allumage
   strip.begin();
   strip.show(); // Initialize all pixels to 'off'
 }
@@ -59,7 +60,7 @@ void loop() {
 /******** SELECT SHOW --> Affiche la led temoin ********/
 void selectShow(int i){
   switch(i){
-    case 0: setPixel(LED_TEMOIN, 0, 0, 0);
+    case 0: setPixel(LED_TEMOIN, 100, 0, 0); // Rouge pour dire que c'est allumé
     break;
     case 1: setPixel(LED_TEMOIN, 175, 0, 255); // dague d'ombre
             setPixel(LED_TEMOIN+1, 175, 0, 255);
