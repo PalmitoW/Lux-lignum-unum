@@ -1,19 +1,16 @@
 // Baton de GN
 // #ProjetLuxLignumUnum
 
-// Validation Arduino OK
-
 /*
 *   Test interrupteurs part 2
 *   Test des fonctions select ++, select --
 *   Test de la fonction floor
+*   Info: Delay est en milli secondes
 */
 
 /******************** INTRODUCTION ENTREES SORTIES ********************/
 
 #include <Adafruit_NeoPixel.h>
-
-/** ça sert à quelque chose le truc en dessous là? **/
 #ifdef __AVR__
   #include <avr/power.h>
 #endif
