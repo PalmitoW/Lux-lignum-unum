@@ -43,9 +43,8 @@ Adafruit_NeoPixel strip = Adafruit_NeoPixel(NUM_LEDS, PIXEL_PIN, NEO_GRB + NEO_K
 bool oldSelect = LOW;
 bool oldStart = LOW;
 bool oldFloor = LOW;
-int showType = 0;
-int floorType = 0;
-//int timeCounter =0;
+uint8_t showType = 0;
+uint8_t floorType = 0;
 
 /*************************** BOUCLE SETUP ***************************/
 
@@ -140,7 +139,7 @@ void floorLoop(void){
 /*************************** SWITCH CASES ***************************/
 
 /******** SELECT SHOW --> Affiche la led temoin ********/
-void selectShow(int i){
+void selectShow(uint8_t i){
   switch(i){
     case 0: setPixel(LED_TEMOIN, 100, 0, 0); // Rouge pour dire que c'est allumé
     break;
@@ -174,7 +173,7 @@ void selectShow(int i){
 
 /******** START SHOW --> effectue le programme ********/
 
-void startShow(int i) {
+void startShow(uint8_t i) {
   switch(i){
 case 0: setAll(0,0,0);
             break;
@@ -221,6 +220,9 @@ void floorShow(void){
 	    break; 
     }
     floorType ++;
+    if(floorType==10){
+	    floorType=0;
+    }
 }
 	
 /*************************** BOUCLE EFFETS DE BASE ***************************/
