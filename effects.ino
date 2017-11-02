@@ -13,7 +13,7 @@
 #define PIXEL_PIN    1    // Digital IO pin connected to the NeoPixels.
 
 #define NUM_LEDS 42
-#define LED_TEMOIN 18
+#define LED_TEMOIN 17
 
 // Parameter 1 = number of pixels in strip,  neopixel stick has 8
 // Parameter 2 = pin number (most are valid)
@@ -78,6 +78,7 @@ void selectShow(int i){
     case 8: setPixel(LED_TEMOIN, 255, 255, 255);
     break;
   }
+  strip.show();
 }
 
 /******** START SHOW --> effectue le programme ********/
