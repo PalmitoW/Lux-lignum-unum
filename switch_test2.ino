@@ -259,3 +259,19 @@ void setAll(byte red, byte green, byte blue) {
   }
   showStrip();
 }
+
+bool startBreak(){
+  bool newStart = digitalRead(BUTTON_PIN_START);
+  bool breakBool = 0;
+  // Check if state changed from low to high (button press).
+  if (newStart == HIGH && oldStart == LOW) {
+    // Short delay to debounce button.
+    delay(10);
+    // Check if button is still high after debounce.
+    newStart = digitalRead(BUTTON_PIN_START);
+    if (newStart == HIGH) {
+          breakBool=1;
+    }
+    return breakBool; 
+  }
+}
