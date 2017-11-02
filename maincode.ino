@@ -1,7 +1,7 @@
 // Baton de GN
 // #ProjetLuxLignumUnum
 // ATtiny85 on-board, 8K of flash, 512 byte of SRAM, 512 bytes of EEPROM
-
+ // programme utilise 8096 byte
 /*
 *   Test interrupteurs part 2
 *   Test des fonctions select ++, select --
@@ -151,7 +151,6 @@ void floorLoop(void){
 /******** SELECT SHOW --> Affiche la led temoin ********/
 void selectShow(int i){
   switch(i){
- switch(i){
     case 0: setPixel(LED_TEMOIN, 100, 0, 0); // Rouge pour dire que c'est allumé
     break;
     case 1: setPixel(LED_TEMOIN, 175, 0, 255); // dague d'ombre
