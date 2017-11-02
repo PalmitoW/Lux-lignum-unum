@@ -3,9 +3,8 @@
 // ATtiny85 on-board, 8K of flash, 512 byte of SRAM, 512 bytes of EEPROM
  // programme utilise 8096 byte
 /*
-*   Test interrupteurs part 2
-*   Test des fonctions select ++, select --
-*   Test de la fonction floor
+*   
+*   
 *   Info: Delay est en milli secondes
 */
 
@@ -67,8 +66,8 @@ void setup() {
 *OK* l’interrupteur SELECT monte le programme
 * l'interrupteur SELECT + FLOOR descend le pogramme OK A TESTER
 * l’interrupteur START lance le programme OK A TESTER
-* une led au dessus de la main indique sur quel programme on est OK A TESTER
-* l’interrupteur FLOOR lance un petit effet floorShow (toujours le même?) OK A TESTER
+* une led au dessus de la main indique sur quel programme on est OK
+* l’interrupteur FLOOR lance des petits effets floorShow OK A TESTER
 */
 
 
@@ -76,12 +75,6 @@ void loop() {
   selectLoop();
   startLoop();
   floorLoop();
-/*  timeCounter++;
-  if(timeCounter==10000){
-	timeCounter=0;
-	timeShow();
-  }
-*/
 }
 /*************************** BUTTON LOOP ***************************/
 void selectLoop(void){
@@ -90,7 +83,7 @@ void selectLoop(void){
    // Check if state changed from low to high (button press).
   if (newSelect == HIGH && oldSelect == LOW) {
     // Short delay to debounce button.
-    delay(20);
+    delay(10);
     // Check if button is still high after debounce.
     newSelect = digitalRead(BUTTON_PIN_SELECT);
     newFloor = digitalRead(BUTTON_PIN_FLOOR);
@@ -100,14 +93,12 @@ void selectLoop(void){
         showType++;
         if (showType > MAXCASE)
           showType=0;
-//        selectShow(showType);
       }else{
         if(showType == 0){
           showType=MAXCASE;
         }else{
           showType--;
         }
- //       selectShow(showType);
       }
 	}
   }
@@ -121,7 +112,7 @@ void startLoop(void){
   // Check if state changed from low to high (button press).
   if (newStart == HIGH && oldStart == LOW) {
     // Short delay to debounce button.
-    delay(20);
+    delay(10);
     // Check if button is still high after debounce.
     newStart = digitalRead(BUTTON_PIN_START);
     if (newStart == HIGH) {
@@ -136,7 +127,7 @@ void floorLoop(void){
   // Check if state changed from low to high (button press).
   if (newFloor == HIGH && oldFloor == LOW) {
     // Short delay to debounce button.
-    delay(20);
+    delay(10);
     // Check if button is still high after debounce.
     newFloor = digitalRead(BUTTON_PIN_FLOOR);
     if (newFloor == HIGH) {
@@ -193,7 +184,7 @@ case 0: setAll(0,0,0);
             break;
     case 3: tenebre(50); // bas du baton en violet
             break;
-    case 4: manteauDombre(); // brille comme des étoiles? quentin?
+    case 4: manteauDombre(2000); // allume tout en bleu
             break; 
     case 5: amitieMortsVivants(50); // trait de lumière verte
             break;
@@ -205,11 +196,8 @@ case 0: setAll(0,0,0);
             break;
   }
 }
-/******** FLOOR SHOW --> effet simple ********/
+/******** FLOOR SHOW --> effets simples ********/
 void floorShow(void){
-      colorWipe(strip.Color(255, 255, 255), 10);  // White
-	delay(20);
-	setAll(0,0,0);
     switch(floorType){
 	    case 0: traitCouleur(strip.Color(255, 255, 255), 42, 28);
 	    break;
@@ -235,14 +223,6 @@ void floorShow(void){
     floorType ++;
 }
 	
-/******** TIME SHOW --> effet simple ********/
-/*
-void timeShow(void){
-      colorWipe(strip.Color(255, 0, 255), 10);  // Pink
-      delay(200);
-      startShow(showType);
-}	
-*/
 /*************************** BOUCLE EFFETS DE BASE ***************************/
 
 // Fill the dots one after the other with a color
@@ -371,8 +351,10 @@ Les leds brillent comme des étoiles en violet de façon disparate sur le bâton
 */
 
 
-void manteauDombre(void){
-
+void manteauDombre(uint8_t wait){
+	setAll(0,0,255);
+	delay(wait);
+	setAll(0,0,0);
 }
 
 /*
