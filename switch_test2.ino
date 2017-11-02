@@ -1,5 +1,6 @@
 // Baton de GN
 // #ProjetLuxLignumUnum
+// ATtiny85 on-board, 8K of flash, 512 byte of SRAM, 512 bytes of EEPROM
 
 /*
 *   Test interrupteurs part 2
@@ -44,6 +45,7 @@ bool oldSelect = LOW;
 bool oldStart = LOW;
 bool oldFloor = LOW;
 int showType = 0;
+int floorType = 0;
 //int timeCounter =0;
 
 /*************************** BOUCLE SETUP ***************************/
@@ -184,6 +186,29 @@ void floorShow(void){
       colorWipe(strip.Color(255, 255, 255), 10);  // White
 	delay(20);
 	setAll(0,0,0);
+    switch(floorType){
+	    case 0: traitCouleur(strip.Color(255, 255, 255), 42, 28);
+	    break;
+	    case 1: traitCouleur(strip.Color(255, 0, 0), 42, 28);
+	    break;
+	    case 2: traitCouleur(strip.Color(255, 0, 0), 28, 14);
+	    break;
+	    case 3: traitCouleur(strip.Color(255, 0, 0), 14, 0);
+	    break;
+	    case 4: traitCouleur(strip.Color(0, 255, 0), 42, 28); 
+	    break;
+	    case 5: traitCouleur(strip.Color(0, 255, 0), 28, 14); 
+	    break;
+	    case 6: traitCouleur(strip.Color(0, 255, 0), 14, 0); 
+	    break;
+	    case 7: traitCouleur(strip.Color(0, 0, 255), 42, 28); 
+	    break;
+	    case 8: traitCouleur(strip.Color(0, 0, 255), 28, 14); 
+	    break;
+	    case 9: traitCouleur(strip.Color(0, 0, 255), 14, 0); 
+	    break; 
+    }
+    floorType ++;
 }
 	
 /******** TIME SHOW --> effet simple ********/
@@ -198,7 +223,7 @@ void timeShow(void){
 
 // Fill the dots one after the other with a color
 void colorWipe(uint32_t c, uint8_t wait) {
-  for(uint16_t i=0; i<strip.numPixels(); i++) {
+  for(uint8_t i=0; i<strip.numPixels(); i++) {
     strip.setPixelColor(i, c);
     strip.show();
     delay(wait);
@@ -207,6 +232,22 @@ void colorWipe(uint32_t c, uint8_t wait) {
     }
   }
 }
+
+// effet trait de couleur pour floorshow
+
+void traitCouleur(uint32_t c, uint8_t istart, uint8_t istop){
+	for (uint8_t i=istart; i<istop; i--){
+		strip.setPixelColor(i, c);
+		strip.show();
+		delay(50);
+	}
+	for (uint8_t i=istart; i<istop; i--){
+		strip.setPixelColor(i, 0);
+		strip.show();
+		delay(50);
+	}
+}
+	
 /**************************** FONCTION PARAMETRES **********************/
 
 void showStrip() {
