@@ -1,0 +1,543 @@
+// #ProjetLuxLignumUnum
+// ATtiny85 on-board, 8K of flash, 512 byte of SRAM, 512 bytes of EEPROM
+// programme utilise 8036 byte
+// Delay in ms
+ 
+ /** 
+ *
+ *
+ *
+ *
+ *                         Objectif, éclairer une émépe de lumière 
+ *
+ *
+ *
+ *
+ *
+ **/
+
+/******************** INTRODUCTION ENTREES SORTIES ********************/
+
+#include <Adafruit_NeoPixel.h>
+#ifdef __AVR__
+  #include <avr/power.h>
+#endif
+
+// Define INPUTS
+#define   BUTTON_PIN_POTG   0    // Potentiomètre de gauche
+#define   BUTTON_PIN_POTD   2    // Potentiomètre de droite
+#define   BUTTON_PIN_ACC1   3    // Accéléromètre axe X
+#define   BUTTON_PIN_ACC2   4    // Accéléromètre axe Y
+#define   BUTTON_PIN_ACC3   RES  // Accéléromètre axe Z
+
+// Define OUTPUTS
+#define   PIXEL_PIN          1    // Digital IO pin connected to the NeoPixels.
+
+// Define LEDS
+#define   NUM_LEDS           13
+#define   LED_TEMOIN         1
+
+
+#define   MAXCASE            8
+
+//int ledFadeTime = 5;
+
+// Parameter 1 = number of pixels in strip,  neopixel stick has 8
+// Parameter 2 = pin number (most are valid)
+// Parameter 3 = pixel type flags, add together as needed:
+//   NEO_RGB     Pixels are wired for RGB bitstream
+//   NEO_GRB     Pixels are wired for GRB bitstream, correct for neopixel stick
+//   NEO_KHZ400  400 KHz bitstream (e.g. FLORA pixels)
+//   NEO_KHZ800  800 KHz bitstream (e.g. High Density LED strip), correct for neopixel stick
+Adafruit_NeoPixel strip = Adafruit_NeoPixel(NUM_LEDS, PIXEL_PIN, NEO_GRB + NEO_KHZ800);
+
+/******************** INTRODUCTION DES VARIABLES ********************/
+bool oldSelect = LOW;
+bool oldStart = LOW;
+bool oldFloor = LOW;
+uint8_t showType = 0;
+uint8_t floorType = 0;
+
+
+
+
+// Old code
+
+
+
+/*************************** BOUCLE SETUP ***************************/
+void setup() { 
+  pinMode(BUTTON_PIN_SELECT, INPUT_PULLUP);
+  pinMode(BUTTON_PIN_START, INPUT_PULLUP);
+  pinMode(BUTTON_PIN_FLOOR, INPUT_PULLUP);
+  strip.begin();
+  strip.show(); // Initialize all pixels to 'off'
+  delay(100);
+}
+
+/************************ BOUCLE EST BOUCLEE ************************/
+/*
+* A FAIRE
+* Objectifs:
+*OK* l’interrupteur SELECT monte le programme
+* l'interrupteur SELECT + FLOOR descend le pogramme OK A TESTER
+* l’interrupteur START lance le programme OK A TESTER
+* une led au dessus de la main indique sur quel programme on est OK
+* l’interrupteur FLOOR lance des petits effets floorShow OK A TESTER
+*/
+
+
+void loop() { 
+  selectLoop(); // lit l'interrupteur select ; sélectionne un programme ; lance selectshow qui allume les leds témoins
+  startLoop();  // lit l'interrupteur start ; lance start show qui execute les effets
+  floorLoop();   // lit l'interrupteur floor ; lance floorshow petits effets floor
+}
+
+
+/*************************** BUTTON LOOP ***************************/
+void selectLoop(void){ // lit l'interrupteur select ; sélectionne un programme ; lance selectshow qui allume les leds témoins
+    bool newSelect = digitalRead(BUTTON_PIN_SELECT);
+    bool newFloor = digitalRead(BUTTON_PIN_FLOOR);
+   // Check if state changed from low to high (button press).
+  if (newSelect == HIGH && oldSelect == LOW) {
+    // Short delay to debounce button.
+    delay(10);
+    // Check if button is still high after debounce.
+    newSelect = digitalRead(BUTTON_PIN_SELECT);
+    newFloor = digitalRead(BUTTON_PIN_FLOOR);
+    if (newSelect == HIGH) {
+      
+      if (newFloor == LOW)
+      {
+        showType++;
+        
+        if (showType > MAXCASE)
+          showType=0;
+      }
+      else
+      {
+        if(showType <= 0){
+          showType=MAXCASE;
+        }else{
+          showType--;
+        }
+      }
+    }
+  }
+  oldSelect = newSelect;
+  oldFloor = newFloor;
+  selectShow(showType);
+}
+
+void startLoop(void){ // lit l'interrupteur start ; lance start show qui execute les effets
+  bool newStart = digitalRead(BUTTON_PIN_START);
+  // Check if state changed from low to high (button press).
+  if (newStart == HIGH && oldStart == LOW) {
+    // Short delay to debounce button.
+    delay(10);
+    // Check if button is still high after debounce.
+    newStart = digitalRead(BUTTON_PIN_START);
+    if (newStart == HIGH) {
+          startShow(showType);
+    }
+  }
+  oldStart = newStart;
+}
+  
+void floorLoop(void){ // lit l'interrupteur floor ; lance floorshow petits effets floor
+  bool newFloor = digitalRead(BUTTON_PIN_FLOOR);
+  // Check if state changed from low to high (button press).
+  if (newFloor == HIGH && oldFloor == LOW) {
+    // Short delay to debounce button.
+    delay(10);
+    // Check if button is still high after debounce.
+    newFloor = digitalRead(BUTTON_PIN_FLOOR);
+    if (newFloor == HIGH) {
+      //floorShow();
+      traitCouleurRandom();
+    }
+  }
+  oldFloor = newFloor;
+}
+ 
+/*************************** SWITCH CASES ***************************/
+
+/******** SELECT SHOW --> Affiche la led temoin ********/
+void selectShow(uint8_t i){
+  switch(i){
+    case 0: setPixel(LED_TEMOIN, 100, 0, 0); // Rouge pour dire que c'est allumé
+    break;
+    case 1: setPixel(LED_TEMOIN, 175, 0, 255); // dague d'ombre
+            setPixel(LED_TEMOIN+1, 175, 0, 255);
+    break;
+    case 2: setPixel(LED_TEMOIN, 175, 0, 255); // visage cauchemar
+            setPixel(LED_TEMOIN+1, 255, 0, 0);
+    break;
+    case 3: setPixel(LED_TEMOIN, 0, 0, 0); // ténèbre
+            setPixel(LED_TEMOIN+1, 175, 0, 255);
+    break;
+    case 4: setPixel(LED_TEMOIN, 0, 0, 125); // manteau d'ombre
+            setPixel(LED_TEMOIN+1, 100, 0, 125);
+    break;
+    case 5: setPixel(LED_TEMOIN, 0, 255, 0); // amitié mort vivant
+            setPixel(LED_TEMOIN+1, 0, 0, 0);
+    break;
+    case 6: setPixel(LED_TEMOIN, 175, 0, 255); // désenchantement
+            setPixel(LED_TEMOIN+1, 0, 0, 0);
+    break;
+    case 7: setPixel(LED_TEMOIN, 255, 255, 255); // désorientation
+            setPixel(LED_TEMOIN+1, 175, 0, 255);
+    break;
+    case 8: setPixel(LED_TEMOIN, 255, 255, 255); // la mort peut attendre
+            setPixel(LED_TEMOIN+1, 100, 0, 100);
+    break;
+  }
+  showStrip();
+}
+
+/******** START SHOW --> effectue le programme ********/
+void startShow(uint8_t i) {
+  switch(i){
+    case 0: setAll(0,0,0);
+            break;
+    case 1: dagueDombre(15, 20, 4); // zone violette proche main
+            break;
+    case 2: visageCauchemar(50); // strob violet et blanc
+            break;
+    case 3: tenebre(4); // bas du baton en violet
+            break;
+    case 4: manteauDombre(2000); // allume tout en bleu
+            break; 
+    case 5: amitieMortsVivants(50); // trait de lumière verte
+            break;
+    case 6: desenchantement(4); // s'allume et s'éteint lentement wait4 --> allume 1 sec
+            break;
+    case 7: desorientation(80); // strob violet et blanc haut baton
+            break;
+    case 8: laMortPeutAttendre(5); // lueure blanche haut baton à coder
+            break;
+  }
+}
+/******** FLOOR SHOW --> effets simples ********/
+void floorShow(void){ // appel la fonction trait de couleurs sous différentes couleurs et à différents endroits
+    switch(floorType){
+      case 0: traitCouleur(strip.Color(255, 255, 255), 42, 28); // blanche en bas
+      break;
+      case 1: traitCouleur(strip.Color(255, 0, 0), 42, 28); // rouge en bas
+      break;
+      case 2: traitCouleur(strip.Color(255, 0, 0), 28, 14); // rouge au milieu
+      break;
+      case 3: traitCouleur(strip.Color(255, 0, 0), 14, 0); // rouge en haut
+      break;
+      case 4: traitCouleur(strip.Color(0, 255, 0), 42, 28); // vert en bas
+      break;
+      case 5: traitCouleur(strip.Color(0, 255, 0), 28, 14);  // vert au milieu
+      break;
+      case 6: traitCouleur(strip.Color(0, 255, 0), 14, 0); // vert en haut
+      break;
+      case 7: traitCouleur(strip.Color(0, 0, 255), 42, 28); // bleu en bas
+      break;
+      case 8: traitCouleur(strip.Color(0, 0, 255), 28, 14); // bleu au milieu
+      break;
+      case 9: traitCouleur(strip.Color(0, 0, 255), 14, 0); // bleu en haut
+      break; 
+    }
+    
+    floorType++;
+    
+    if(floorType==10){
+      floorType=0;
+    }
+}
+
+/*************************** BOUCLE EFFETS DE BASE ***************************/
+
+// effet trait de couleur pour floorshow --> allume successivement des leds entre istart et istop puis les éteint
+void traitCouleur(uint32_t c, uint8_t istart, uint8_t istop){
+  for (uint8_t i=istart; i>istop; i--){
+    strip.setPixelColor(i, c);
+    strip.show();
+    delay(50);
+  }
+  for (uint8_t i=istart; i>istop; i--){
+    strip.setPixelColor(i, 0);
+    strip.show();
+    delay(50);
+  }
+}
+
+void traitCouleurRandom(void ){
+  uint8_t istart, istop;
+  
+  istop = random(0, NUM_LEDS);
+  istart = constrain(istop + random(5, 15), 0, NUM_LEDS);
+  
+  traitCouleur(strip.Color(random(0,255), random(0,255), random(0,255)), istart, istop);
+}
+
+/*
+Effet 1
+Affichage en led: 000
+Nom du sort : Dague d’Ombre
+Effet du sort : Permet d'infliger 2 points de dégâts au toucher à main nu, les dégâts traverse l'armure.
+Vous devez avoir la main nu, ne pas porter de gant.
+Ce sort ne peut être utilisé en combat, ne vous jetez pas sur un adversaire pour le toucher de votre main.
+Description effet : 
+Zone de violet tourne autour des interrupteurs
+fonction d’allumage de leds défini, augmenter l'intensite rapidement et diminution doucement
+*/
+void dagueDombre(uint8_t led1, uint8_t led2, uint8_t wait){
+  for(uint8_t j=0; j<255; j++){
+    for(uint8_t i=led1; i<led2; i++) {
+      strip.setPixelColor(i, j, 0, j);
+    }
+    
+    strip.show();
+    delay(wait);
+  }
+  
+  for(uint8_t j=255; j>0; j--){
+    for(uint8_t i=led1; i<led2; i++) {
+      strip.setPixelColor(i, j, 0, j);
+    }
+    
+    strip.show();
+    delay(wait);
+  }
+  
+  setAll(0,0,0);
+}
+
+/*
+Effet 2
+Affichage en led: 000
+Nom du sort : Visage de cauchemar
+Effet du sort :
+Lors du lancement de ce sort, désignez -dans un cercle de 3 mètres de rayon autour de vous- autant de personnes que vous le souhaitez. Aux yeux de ces cibles, votre visage disparaît sous un masque d'ombre évoquant un néant insondable et elles sont sous l'effet d'une peur.
+Description effet : 
+Petits points violets et rouge qui montent doucement puis tête du bâton qui clignote en rouge et violet
+*/
+void visageCauchemar(uint8_t wait){
+    for(uint8_t i=NUM_LEDS ; i>4 ; i=i-2){
+        strip.setPixelColor(i, 255, 0, 255);
+        strip.setPixelColor(i-1, 255, 0, 0);
+        strip.setPixelColor(i+1, 0, 0, 0);
+        strip.setPixelColor(i+2, 0, 0, 0);
+        strip.show();
+        delay(wait);
+    }
+    for(uint8_t i=0 ; i<20 ; i++){                                 //strob ON
+        for(uint8_t j=0 ; j<10 ; j=j+2){
+            strip.setPixelColor(j, 255, 0, 255);
+            strip.setPixelColor(j-1, 255, 0, 0);
+            strip.show();
+        }
+        delay(wait);
+        setAll(0,0,0);                                              //strob OFF
+        delay(wait);
+    }
+}
+
+/*
+Effet 3
+Affichage en led: 000
+Nom du sort : Ténèbre
+Effet du sort :
+Ce sort crée une zone de ténèbres  impénétrable dans toute une pièce. Si vous connaissez ce sort, vous gagnez la capacité passive de voir dans les ténèbres. Si la zone de ténèbres est touchée par une lumière purificatrice, elle est dissipée.
+Ce sort ne fonctionne pas en extérieur.
+Description effet : 
+Allume en violet le pied du bâton
+effet très simple
+*/
+void tenebre(uint8_t wait){
+  for(uint8_t i=NUM_LEDS ; i>25 ; i--){
+    strip.setPixelColor(i, 255, 0, 255);
+  }
+  
+  strip.show();
+
+  for(uint8_t j=255; j>0; j--){
+    for(uint8_t i=NUM_LEDS; i>25; i--) {
+      strip.setPixelColor(i, j, 0, j);
+    }
+    
+    strip.show();
+    delay(wait);
+  }
+
+  setAll(0,0,0);
+}
+
+/*
+Effet 4
+Affichage en led: 000
+Nom du sort : Manteau d’ombre
+Effet du sort :
+Vous pouvez devenir invisible, vous drapant dans des ombres magiques.
+Vous ne pouvez pas vous déplacer avec ce sort.
+Vous pouvez le maintenir aussi longtemps que vous le souhaitez.
+Description effet : 
+Les leds brillent comme des étoiles en violet de façon disparate sur le bâton
+→ code quentin?
+*/
+void manteauDombre(uint8_t wait){
+  setAll(0,0,255);
+  
+  delay(wait);
+  
+  setAll(0,0,0);
+}
+
+/*
+Effet 5
+Affichage en led: 000
+Nom du sort : Amitié morts vivants
+Effet du sort :
+En lançant ce sort sur un mort vivant, celui ci devient votre ami, il ne vous attaquera plus mais ne vous obéira pas forcément.
+Description effet : 
+Rayon vert qui part du bas jusqu’en haut et laisse allumé le haut
+*/
+void amitieMortsVivants(uint8_t wait){
+  for(uint8_t i=NUM_LEDS ; i>0 ; i--){
+    strip.setPixelColor(i, 0, 255, 0);
+    strip.setPixelColor(i+10, 0, 0, 0);
+    strip.show();
+    delay(wait);
+  }
+  
+  delay(wait*10);
+  setAll(0,0,0);
+}
+
+/*
+Effet 6
+Affichage en led: 000
+Nom du sort : Désenchantement
+Effet du sort :
+Vous êtes capable de libérer l'étincelle de vie enfermée dans un objet magique.
+Cela détruit la magie de l'objet.
+Description effet : 
+Faire clignoter très doucement le haut du bâton, s’allume lentement, s’éteint lentement *5
+*/
+void desenchantement(uint8_t wait){
+  for(uint8_t k=0; k<5 ; k++){
+    for(uint8_t j=0; j<255 ; j++){
+      for(uint8_t i=0; i<10; i++) {
+        strip.setPixelColor(i, j, 0, j);
+      }
+
+      strip.show();
+      delay(wait);
+    }
+    
+    for(uint8_t j=255; j>0 ; j--){
+      for(uint8_t i=0; i<10; i++) {
+        strip.setPixelColor(i, j, 0, j);
+      }
+      
+      strip.show();
+      delay(wait);
+    }
+  }
+}
+
+/*
+Effet 7
+Affichage en led: 000
+Nom du sort : Désorientation
+Effet du sort :
+vous désorientez votre cible qui est alors prise de vertige et doit poser un genou à terre, elle peut ensuite se relever.
+Description effet : 
+Stroboscope violet et blanc haut du bâton
+*/
+void desorientation(uint8_t wait){
+  for(uint8_t i=0 ; i<50 ; i++){                                 //strob ON
+    for(uint8_t j=0 ; j<10 ; j=j+2){
+      strip.setPixelColor(i, 175, 0, 255);
+      strip.setPixelColor(i-1, 255, 255, 255);
+    }
+    
+    strip.show();
+    delay(wait);
+    
+    setAll(0,0,0);                                          //strobe OFF
+  }
+}
+    
+/*
+Effet 8
+Affichage en led: 000
+Nom du sort : La mort peut attendre
+Effet du sort :
+La cible n'agonisera pas la prochaine fois qu'elle tombera, il restera dans le coma à attendre. Le sort reste actif jusqu'à utilisation ou jusqu'au prochain repas. Le magicien peut lancer autant de fois ce sort qu'il le souhaite sur plusieurs personnes à la fois.
+Description effet : 
+lueure blanche en haut du bâton?
+*/
+void laMortPeutAttendre(uint8_t wait){
+  for(uint8_t j=0; j<255 ; j++){
+    for(uint8_t i=0; i<15; i++) {
+      strip.setPixelColor(i, j, j, j);
+    }
+
+    strip.show();
+    delay(wait);
+  }
+  
+  for(uint8_t j=255; j>0 ; j--){
+    for(uint8_t i=0; i<15; i++) {
+      strip.setPixelColor(i, j, j, j);
+    }
+    
+    strip.show();
+    delay(wait);
+  }
+}
+
+/**************************** FONCTION PARAMETRES **********************/
+
+void showStrip() {
+ #ifdef ADAFRUIT_NEOPIXEL_H 
+   // NeoPixel
+   strip.show();
+ #endif
+ #ifndef ADAFRUIT_NEOPIXEL_H
+   // FastLED
+   FastLED.show();
+ #endif
+}
+
+void setPixel(int Pixel, byte red, byte green, byte blue) {
+ #ifdef ADAFRUIT_NEOPIXEL_H 
+   // NeoPixel
+   strip.setPixelColor(Pixel, strip.Color(red, green, blue));
+ #endif
+ #ifndef ADAFRUIT_NEOPIXEL_H 
+   // FastLED
+   leds[Pixel].r = red;
+   leds[Pixel].g = green;
+   leds[Pixel].b = blue;
+ #endif
+}
+
+void setAll(byte red, byte green, byte blue) {
+  for(int i = 0; i < NUM_LEDS; i++ ) {
+    setPixel(i, red, green, blue); 
+  }
+  showStrip();
+} 
+
+bool startBreak(){
+  bool newStart = digitalRead(BUTTON_PIN_START);
+  bool breakBool = 0;
+  // Check if state changed from low to high (button press).
+  if (newStart == HIGH && oldStart == LOW) {
+    // Short delay to debounce button.
+    delay(10);
+    // Check if button is still high after debounce.
+    newStart = digitalRead(BUTTON_PIN_START);
+    if (newStart == HIGH) {
+          breakBool=1;
+    }
+    return breakBool; 
+  }
+}
