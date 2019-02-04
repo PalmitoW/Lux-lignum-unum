@@ -15,7 +15,44 @@
  *
  *
  **/
+ 
+ 
+ /*
+ Idée : 8 à 10 programmes Définis par le potentiomètre 1 : 
+ 
+Programme 0 : 
+**CONFIG
+PotG : 0 - 8%
+PotD : Dimmer Blanc 0-100%
+Axe X : Dimmer Rouge 0-100%
+Axe Y : Dimmer Vert 0-100%
+Axe Z : Dimmer Bleu 0-100%
+**DEFINITION
+Pouvoir s'éclaire / Lampe Torche
+Rajout d'effet de couleur pour la forme
+**LED TEMOIN
+Blanc
+**8LEDs LAME
 
+**4 LEDS POIGNEE
+
+
+Programme  : 
+**CONFIG
+PotG : %
+PotD : 
+Axe X : 
+Axe Y : 
+Axe Z : 
+**DEFINITION
+
+**LED TEMOIN
+
+**8LEDs LAME
+
+**4 LEDS POIGNEE
+
+*/
 /******************** INTRODUCTION ENTREES SORTIES ********************/
 
 #include <Adafruit_NeoPixel.h>
@@ -29,6 +66,7 @@
 #define   BUTTON_PIN_ACC1   3    // Accéléromètre axe X
 #define   BUTTON_PIN_ACC2   4    // Accéléromètre axe Y
 #define   BUTTON_PIN_ACC3   RES  // Accéléromètre axe Z
+// https://playground.arduino.cc/Main/MPU-6050
 
 // Define OUTPUTS
 #define   PIXEL_PIN          1    // Digital IO pin connected to the NeoPixels.
