@@ -39,11 +39,11 @@ Blanc
 
 Programme 1 : 
 **CONFIG
-PotG : %
-PotD : 
-Axe X : 
-Axe Y : 
-Axe Z : 
+PotG : 9-17%
+PotD : Dimmer Blanc 0-100%
+Axe X : Dimmer Vert 0-100%
+Axe Y : Dimmer Vert 0-100%
+Axe Z : Dimmer Vert 0-100%
 **DEFINITION
 
 **LED TEMOIN
@@ -54,11 +54,11 @@ Axe Z :
 
 Programme 2 : 
 **CONFIG
-PotG : %
-PotD : 
-Axe X : 
-Axe Y : 
-Axe Z : 
+PotG : 18-26%
+PotD : Dimmer Blanc 0-100%
+Axe X : Dimmer Rouge 0-100%
+Axe Y : Dimmer Rouge 0-100%
+Axe Z : Dimmer Rouge 0-100%
 **DEFINITION
 
 **LED TEMOIN
@@ -69,7 +69,7 @@ Axe Z :
 
 Programme 3 : 
 **CONFIG
-PotG : %
+PotG : 27-35%
 PotD : 
 Axe X : 
 Axe Y : 
@@ -84,7 +84,7 @@ Axe Z :
 
 Programme 4 : 
 **CONFIG
-PotG : %
+PotG : 36-44%
 PotD : 
 Axe X : 
 Axe Y : 
@@ -99,7 +99,7 @@ Axe Z :
 
 Programme 5 : 
 **CONFIG
-PotG : %
+PotG : 45-53%
 PotD : 
 Axe X : 
 Axe Y : 
@@ -114,7 +114,7 @@ Axe Z :
 
 Programme 6 : 
 **CONFIG
-PotG : %
+PotG : 54-62%
 PotD : 
 Axe X : 
 Axe Y : 
@@ -129,7 +129,7 @@ Axe Z :
 
 Programme 7 : 
 **CONFIG
-PotG : %
+PotG : 63-71%
 PotD : 
 Axe X : 
 Axe Y : 
@@ -144,7 +144,7 @@ Axe Z :
 
 Programme 8 : 
 **CONFIG
-PotG : %
+PotG : 72-80%
 PotD : 
 Axe X : 
 Axe Y : 
@@ -159,7 +159,7 @@ Axe Z :
 
 Programme 9 : 
 **CONFIG
-PotG : %
+PotG : 80-88%
 PotD : 
 Axe X : 
 Axe Y : 
@@ -174,7 +174,24 @@ Axe Z :
 
 Programme 10 : 
 **CONFIG
-PotG : %
+PotG : 89-97%
+PotD : 
+Axe X : 
+Axe Y : 
+Axe Z : 
+**DEFINITION
+
+**LED TEMOIN
+
+**8LEDs LAME
+
+**4 LEDS POIGNEE
+
+*/
+
+Programme 11 : 
+**CONFIG
+PotG : 98-100%
 PotD : 
 Axe X : 
 Axe Y : 
