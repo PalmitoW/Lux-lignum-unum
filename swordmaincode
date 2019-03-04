@@ -22,8 +22,8 @@
  
 Programme 0 : 
 **CONFIG
-PotG : 0 - 8%
-PotD : Dimmer Blanc 0-100%
+Pot : 0 - 8%
+Fixe : Blanc 100%
 Axe X : Dimmer Rouge 0-100%
 Axe Y : Dimmer Vert 0-100%
 Axe Z : Dimmer Bleu 0-100%
@@ -31,26 +31,26 @@ Axe Z : Dimmer Bleu 0-100%
 Pouvoir s'éclaire / Lampe Torche
 Rajout d'effet de couleur pour la forme
 **LED TEMOIN
-Blanc
+Blanc 100%
 **8LEDs LAME
-
+Led sur Dimmer
 **4 LEDS POIGNEE
-
+Led sur Dimmer
 
 Programme 1 : 
 **CONFIG
-PotG : 9-17%
-PotD : Dimmer Blanc 0-100%
+Pot : 9-17%
 Axe X : Dimmer Vert 0-100%
 Axe Y : Dimmer Vert 0-100%
 Axe Z : Dimmer Vert 0-100%
 **DEFINITION
-
+Effet de style pour tester principalement
 **LED TEMOIN
-
+Blanc 30%
 **8LEDs LAME
-
+Led sur Dimmer
 **4 LEDS POIGNEE
+Led sur Dimmer
 
 Programme 2 : 
 **CONFIG
