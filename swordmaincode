@@ -41,8 +41,8 @@ Programme 1 :
 **CONFIG
 Pot : 9-17%
 Axe X : Dimmer Vert 0-100%
-Axe Y : Dimmer Vert 0-100%
-Axe Z : Dimmer Vert 0-100%
+Axe Y : Dimmer Bleu 0-100%
+Axe Z : Dimmer Rouge 0-100%
 **DEFINITION
 Effet de style pour tester principalement
 **LED TEMOIN
@@ -61,7 +61,7 @@ Axe Z : Dimmer Rouge 0-100%
 **DEFINITION
 
 **LED TEMOIN
-
+rouge
 **8LEDs LAME
 
 **4 LEDS POIGNEE
@@ -69,13 +69,13 @@ Axe Z : Dimmer Rouge 0-100%
 Programme 3 : 
 **CONFIG
 Pot : 27-35%
-Axe X : 
-Axe Y : 
-Axe Z : 
+Axe X : Dimmer Vert 0-100%
+Axe Y : Dimmer Vert 0-100%
+Axe Z : Dimmer Vert 0-100%
 **DEFINITION
 
 **LED TEMOIN
-
+vert
 **8LEDs LAME
 
 **4 LEDS POIGNEE
@@ -83,13 +83,13 @@ Axe Z :
 Programme 4 : 
 **CONFIG
 Pot : 36-44%
-Axe X : 
-Axe Y : 
-Axe Z : 
+Axe X : Dimmer Bleu 0-100%
+Axe Y : Dimmer Bleu 0-100%
+Axe Z : Dimmer Bleu 0-100%
 **DEFINITION
 
 **LED TEMOIN
-
+bleu
 **8LEDs LAME
 
 **4 LEDS POIGNEE
@@ -97,9 +97,9 @@ Axe Z :
 Programme 5 : 
 **CONFIG
 Pot : 45-53%
-Axe X : 
-Axe Y : 
-Axe Z : 
+Axe X : allumer les leds 2 à 13 à 80% en Bleu
+Axe Y : allumer les leds 2 à 13 à 80% en Rouge
+Axe Z : allumer les leds 2 à 13 à 80% en Vert
 **DEFINITION
 
 **LED TEMOIN
