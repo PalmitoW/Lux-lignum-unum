@@ -54,8 +54,7 @@ Axe Z : Dimmer Vert 0-100%
 
 Programme 2 : 
 **CONFIG
-PotG : 18-26%
-PotD : Dimmer Blanc 0-100%
+Pot : 18-26%
 Axe X : Dimmer Rouge 0-100%
 Axe Y : Dimmer Rouge 0-100%
 Axe Z : Dimmer Rouge 0-100%
@@ -69,8 +68,7 @@ Axe Z : Dimmer Rouge 0-100%
 
 Programme 3 : 
 **CONFIG
-PotG : 27-35%
-PotD : 
+Pot : 27-35%
 Axe X : 
 Axe Y : 
 Axe Z : 
@@ -84,8 +82,7 @@ Axe Z :
 
 Programme 4 : 
 **CONFIG
-PotG : 36-44%
-PotD : 
+Pot : 36-44%
 Axe X : 
 Axe Y : 
 Axe Z : 
@@ -99,8 +96,7 @@ Axe Z :
 
 Programme 5 : 
 **CONFIG
-PotG : 45-53%
-PotD : 
+Pot : 45-53%
 Axe X : 
 Axe Y : 
 Axe Z : 
@@ -114,8 +110,7 @@ Axe Z :
 
 Programme 6 : 
 **CONFIG
-PotG : 54-62%
-PotD : 
+Pot : 54-62%
 Axe X : 
 Axe Y : 
 Axe Z : 
@@ -129,8 +124,7 @@ Axe Z :
 
 Programme 7 : 
 **CONFIG
-PotG : 63-71%
-PotD : 
+Pot : 63-71%
 Axe X : 
 Axe Y : 
 Axe Z : 
@@ -144,8 +138,7 @@ Axe Z :
 
 Programme 8 : 
 **CONFIG
-PotG : 72-80%
-PotD : 
+Pot : 72-80% 
 Axe X : 
 Axe Y : 
 Axe Z : 
@@ -159,8 +152,7 @@ Axe Z :
 
 Programme 9 : 
 **CONFIG
-PotG : 80-88%
-PotD : 
+Pot : 80-88%
 Axe X : 
 Axe Y : 
 Axe Z : 
@@ -174,8 +166,7 @@ Axe Z :
 
 Programme 10 : 
 **CONFIG
-PotG : 89-97%
-PotD : 
+Pot : 89-97%
 Axe X : 
 Axe Y : 
 Axe Z : 
@@ -191,8 +182,7 @@ Axe Z :
 
 Programme 11 : 
 **CONFIG
-PotG : 98-100%
-PotD : 
+Pot : 98-100%
 Axe X : 
 Axe Y : 
 Axe Z : 
